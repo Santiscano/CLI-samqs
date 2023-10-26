@@ -27,7 +27,7 @@ export const inquirerMenu = async () => {
 export const expressOptions = async () => {
     const { tool } = await inquirer.prompt(optionsExpress); // js o ts
 
-    const { nameProyect } = await readInput('nameProyect', 'Ingresa el nombre del proyecto');
+    const { nameProyect } = await readInput('nameProyect', 'Ingresa el nombre del proyecto:'.blue.italic.bold);
 
     await express(tool, nameProyect);
 }

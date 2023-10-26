@@ -1,6 +1,6 @@
 {
   "name": "create-proyect-console",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "CLI creacion de proyectos con un template",
   "main": "index.js",
   "bin": {
@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/Santiscano/CLI-create-proyect-console/issues"
   },
-  "homepage": "https://github.com/Santiscano/CLI-create-proyect-console#readme"
+  "homepage": "https://github.com/Santiscano/CLI-create-proyect-console#readme",
+  "directories": {
+    "doc": "docs"
+  }
 }
