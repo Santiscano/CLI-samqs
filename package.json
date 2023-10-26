@@ -1,17 +1,29 @@
 {
   "name": "create-proyect-console",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "CLI creacion de proyectos con un template",
   "main": "index.js",
+  "bin": {
+    "create-proyect-console": "index.js"
+  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "santiago sierra cano",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
     "inquirer": "^9.2.11"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santiscano/CLI-create-proyect-console.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Santiscano/CLI-create-proyect-console/issues"
+  },
+  "homepage": "https://github.com/Santiscano/CLI-create-proyect-console#readme"
 }
