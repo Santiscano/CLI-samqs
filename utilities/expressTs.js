@@ -8,30 +8,44 @@ export const expressTsClass = ( fileProyectPath, nameProyect ) => {
     const src = path.join(fileProyectPath, '/src');
     if(!fs.existsSync(src)) fs.mkdirSync(src);
 
+    // crear archivos configuracion
+    const files = [ 
+        { route: '.editorconfig', data: createEditorConfig() },
+        { route: '.example.env',  data: createExampleEnv() },
+        { route: '.gitignore',    data: createGitIgnore() },
+        { route: 'package.json',  data: createPackage(nameProyect) },
+        { route: 'tsconfig.json', data: createTsConfig() }
+    ];
+    
+    files.forEach(( { route, data }) => {
+        let fullRoute = path.join(fileProyectPath, route);
+        fs.writeFileSync( fullRoute, data );
+    })
+
     // escribir archivo .editorconfig
-    const editConfigPath = path.join(fileProyectPath, '.editorconfig');
-    const editorConfigData = createEditorConfig();
-    fs.writeFileSync( editConfigPath, editorConfigData );
+    // const editConfigPath = path.join(fileProyectPath, '.editorconfig');
+    // const editorConfigData = createEditorConfig();
+    // fs.writeFileSync( editConfigPath, editorConfigData );
 
     // escribir .example.env
-    const exampleEnvPath = path.join(fileProyectPath, '.example.env');
-    const exampleEnvData = createExampleEnv();
-    fs.writeFileSync( exampleEnvPath, exampleEnvData );
+    // const exampleEnvPath = path.join(fileProyectPath, '.example.env');
+    // const exampleEnvData = createExampleEnv();
+    // fs.writeFileSync( exampleEnvPath, exampleEnvData );
 
     // escribir .gitignore
-    const gitignorePath = path.join(fileProyectPath, '.gitignore');
-    const gitignoreData = createGitIgnore();
-    fs.writeFileSync( gitignorePath, gitignoreData );
+    // const gitignorePath = path.join(fileProyectPath, '.gitignore');
+    // const gitignoreData = createGitIgnore();
+    // fs.writeFileSync( gitignorePath, gitignoreData );
     
     // escribir package.json
-    const packageJsonPath = path.join(fileProyectPath, 'package.json');
-    const packageJsonData = createPackage(nameProyect);
-    fs.writeFileSync( packageJsonPath, packageJsonData );
+    // const packageJsonPath = path.join(fileProyectPath, 'package.json');
+    // const packageJsonData = createPackage(nameProyect);
+    // fs.writeFileSync( packageJsonPath, packageJsonData );
     
     // escribir tsconfig.json
-    const tsconfigJsonPath = path.join(fileProyectPath, 'tsconfig.json');
-    const tsconfigJsonData = createTsConfig();
-    fs.writeFileSync( tsconfigJsonPath, tsconfigJsonData );
+    // const tsconfigJsonPath = path.join(fileProyectPath, 'tsconfig.json');
+    // const tsconfigJsonData = createTsConfig();
+    // fs.writeFileSync( tsconfigJsonPath, tsconfigJsonData );
 
     // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
     // crear carpetas
