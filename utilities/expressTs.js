@@ -9,7 +9,7 @@ import { createAllTableCrud, createConfigPorts, createEditorConfig, createExampl
  * @param {*} fileProyectPath ruta de la raiz del proyecto
  * @param {*} nameProyect nombre asignado al proyecto
  */
-export const expressTsClass = ( fileProyectPath, nameProyect ) => {
+export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
   // ----------------------------ARCHIVOS PRINCIPALES-------------------------------------//
   // crear carpetas principales
   const foldersPrimary = [ '/client', '/logs', '/src', '/temp'  ];
@@ -34,6 +34,7 @@ export const expressTsClass = ( fileProyectPath, nameProyect ) => {
 
 
   // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
+  const src = path.join(fileProyectPath, '/src');
   // crear carpetas
   const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities'];
   folders.forEach(folder => {
@@ -47,46 +48,47 @@ export const expressTsClass = ( fileProyectPath, nameProyect ) => {
     //! class
     
     //! commands
-    // { route: '/commands/allTableCrud.js', data: createAllTableCrud() },
-    // { route: '/commands/oneTableCrud.js', data: createOneTableCrud() },
-    // { route: '/commands/procedure.js',    data: createProcedure() },
+    // { route: '/commands/allTableCrud.js',     data: createAllTableCrud() },
+    // { route: '/commands/oneTableCrud.js',     data: createOneTableCrud() },
+    // { route: '/commands/procedure.js',        data: createProcedure() },
 
     // config
-    { route: '/config/database/mysql.ts', data: createMysqlConfig() },
-    { route: '/config/database/mongoose.ts', data: createMongooseConfig() },
-    { route: '/config/configPorts', data: createConfigPorts() },
+    { route: '/config/database/mysql.ts',     data: createMysqlConfig() },
+    { route: '/config/database/mongoose.ts',  data: createMongooseConfig() },
+    { route: '/config/configPorts.ts',        data: createConfigPorts() },
     
     //? controllers - void
     
-    // helpers
-    { route: '/helpers/sockets.ts', data: createSocket() },
+    // helpers  
+    { route: '/helpers/sockets.ts',           data: createSocket() },
     
     // interfaces
-    { route: '/interfaces/server.d.ts', data: createServerInterface() },
-    { route: '/interfaces/sql2.d.ts', data: createSqlInterface() },
+    { route: '/interfaces/server.d.ts',       data: createServerInterface() },
+    { route: '/interfaces/sql2.d.ts',         data: createSqlInterface() },
     
     //! middlewares
     
     //? models - void
     
     // routes
-    { route: '/index.ts', data: createRoutes() },
+    { route: 'routes/index.ts',               data: createRoutes() },
     
     // services
-    { route: '/services/index.ts',  data: createServer() },
+    { route: '/services/index.ts',            data: createServer() },
     
     //! utilities
     
     // index
-    { route: 'index.ts',            data: createIndex() },
+    { route: 'index.ts',                      data: createIndex() },
   ];
   filesSrc.forEach(( { route, data } ) => {
     let fullRoute = path.join(src, route);
     fs.writeFileSync( fullRoute, data );
   });
 
-};
+  return true;
 
+};
 
 
 

@@ -10,22 +10,22 @@ export const question = [
                 value: 'express',
                 name: `${'1'.green} Express`
             },
-            {
-                value: 'nestjs',
-                name: `${'2'.green} NestJs`
-            },
-            {
-                value: 'react vite',
-                name: `${'3'.green} Reactjs Vite`
-            },
-            {
-                value: 'nextjs',
-                name: `${'4'.green} NextJs Vercel`
-            },
-            {
-                value: 'angular',
-                name: `${'5'.green} Angular Google`
-            },
+            // {
+            //     value: 'nestjs',
+            //     name: `${'2'.green} NestJs`
+            // },
+            // {
+            //     value: 'react vite',
+            //     name: `${'3'.green} Reactjs Vite`
+            // },
+            // {
+            //     value: 'nextjs',
+            //     name: `${'4'.green} NextJs Vercel`
+            // },
+            // {
+            //     value: 'angular',
+            //     name: `${'5'.green} Angular Google`
+            // },
             {
                 value: 'cancelar',
                 name: `${'0'.green} Cancelar`

@@ -12,30 +12,33 @@ export const express = async (tool, nameProyect) => {
     // 2- crear carpeta con nombre proyecto
     if (!fs.existsSync(fileProyectPath)) {
         fs.mkdirSync(fileProyectPath);
+    } else {
+      console.log("=======================================================".green);
+      console.log( 'ya existe una carpeta con este nombre de proyecto'.red.bold );
+      console.log("=======================================================".green);
+      return 
     }
 
     // 3- crear archivos dentro de la carpeta proyecto
     switch (tool) {
         case 'javascript':
-            console.log('entro a js')
+            console.log( 'aun esta en desarrollo'.red.bold );
+            fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
         break;
         case 'typescript':
-            expressTsClass(fileProyectPath, nameProyectFormat);
+          const isSuccess = expressTsClass(fileProyectPath, nameProyectFormat);
+          isSuccess && success(nameProyectFormat);
         break;
     }
+};
 
-
-
-
-
-
-
-
-
-
-    // 4- entregar el mensaje al usuario de cd proyecto y npm i
-    // console.log('el proyecto se ha creado con exito, digita los siguientes comandos'.green.bold);
-    // console.log(`cd ${nameProyectFormat}`.blue);
-    // console.log('npm install --save cors dotenv express mongoose morgan multer mysql2 socket.io'.green);
-    // console.log('npm install -D @types/cors @types/dotenv @types/express @types/mongoose @types/morgan @types/multer ts-node-dev typescript'.green);
+const success = (nameProyectFormat) => {
+  console.log('============================================================================================================================='.green);
+  console.log('============================================================================================================================='.green);
+  console.log('el proyecto se ha creado con exito, digita los siguientes comandos'.white.bold);
+  console.log(`cd ${nameProyectFormat}`.blue);
+  console.log('npm install --save cors dotenv express mongoose morgan multer mysql2 socket.io'.blue);
+  console.log('npm install -D @types/cors @types/dotenv @types/express @types/mongoose @types/morgan @types/multer ts-node-dev typescript'.blue);
+  console.log('============================================================================================================================='.green);
+  console.log('============================================================================================================================='.green);
 };
