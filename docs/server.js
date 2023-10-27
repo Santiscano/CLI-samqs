@@ -15,7 +15,7 @@ import { PORT, URL, PROTOCOL } from '../config/configPorts';
 import { protocol } from '../interfaces/server'
 import { ServerInterface } from '../interfaces/server';
 import { SocketEvents } from '../helpers/sockets';
-import routes from "../routes/mainRoutes";
+import routes from "../routes";
 
 
 export class Server implements ServerInterface{
