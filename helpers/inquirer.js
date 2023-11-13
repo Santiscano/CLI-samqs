@@ -3,7 +3,7 @@ import { execSync} from 'child_process';
 import inquirer from 'inquirer';
 import 'colors';
 
-import { optionsExpress, question, readInput } from './questions.js';
+import { optionsExpress, paradigmExpress, question, readInput } from './questions.js';
 import { express } from './express.js';
 
 
@@ -27,7 +27,9 @@ export const inquirerMenu = async () => {
 export const expressOptions = async () => {
     const { tool } = await inquirer.prompt(optionsExpress); // js o ts
 
+    const { paradigm } = await inquirer.prompt(paradigmExpress) // paradigma de clases o funciones
+
     const { nameProyect } = await readInput('nameProyect', 'Ingresa el nombre del proyecto:'.blue.italic.bold);
 
-    await express(tool, nameProyect);
+    await express(tool, paradigm, nameProyect);
 }

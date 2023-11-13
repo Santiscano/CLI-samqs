@@ -1,6 +1,24 @@
 import fs from 'fs';
 import path from 'path';
-import { createAllTableCrud, createConfigPorts, createEditorConfig, createExampleEnv, createGitIgnore, createIndex, createMongooseConfig, createMysqlConfig, createOneTableCrud, createPackage, createProcedure, createRoutes, createServer, createServerInterface, createSocket, createSqlInterface, createTsConfig } from '../docs/index.js';
+import { 
+  createAllTableCrud, 
+  createConfigPorts, 
+  createEditorConfig, 
+  createExampleEnv, 
+  createGitIgnore, 
+  createIndex, 
+  createMongooseConfig, 
+  createMysqlConfig, 
+  createOneTableCrud, 
+  createPackage, 
+  createProcedure, 
+  createRoutes, 
+  createServer, 
+  createServerInterface, 
+  createSocket, 
+  createSqlInterface, 
+  createTsConfig
+} from '../docs/ts/class/index.js';
 
 
 
@@ -89,8 +107,6 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
   return true;
 
 };
-
-
 
 
 /**

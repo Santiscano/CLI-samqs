@@ -52,6 +52,24 @@ export const optionsExpress = [
     }
 ];
 
+export const paradigmExpress = [
+  {
+    type: 'list',
+    name: 'paradigm',
+    message: '¿Que tipo de paradigma usara?',
+    choices: [
+      {
+        value: 'class',
+        name: `${'1'.green} clases`
+      },
+      {
+        value: 'func',
+        name: `${'2'.green} funciones`
+      },
+    ]
+  }
+];
+
 export const readInput = async (nameInput, message) => {
     
     const question = [
