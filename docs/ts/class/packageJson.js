@@ -1,10 +1,10 @@
 
-export const createPackage = (nameProyect) => {
+export const createPackage = (nameProyect, descriptionProyect = '') => {
   
   const data = `{
   "name": "${nameProyect}",
   "version": "1.0.0",
-  "description": "",
+  "description": "${descriptionProyect}",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,9 @@ export const createPackage = (nameProyect) => {
     "morgan": "*",
     "multer": "*",
     "mysql2": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "swagger-jsdoc": "*",
+    "swagger-ui-express": "*"
   },
   "devDependencies": {
     "@types/cors": "*",
@@ -29,6 +31,8 @@ export const createPackage = (nameProyect) => {
     "@types/mongoose": "*",
     "@types/morgan": "*",
     "@types/multer": "*",
+    "@types/swagger-jsdoc": "*",
+    "@types/swagger-ui-express": "*",
     "ts-node-dev": "*",
     "typescript": "*"
   },

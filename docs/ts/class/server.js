@@ -5,43 +5,42 @@ import http from "http";
 import https from "https";
 import path from "path";
 
-import {Server as socketio} from 'socket.io';
-import bodyParser from 'body-parser';
-import cors from "cors";
-import express, { Request, Response, NextFunction, Express } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
+import cors from "cors";
+import bodyParser from 'body-parser';
+import {Server as socketio} from 'socket.io';
 
 import { PORT, URL, PROTOCOL } from '../config/configPorts';
 import { protocol } from '../interfaces/server'
 import { ServerInterface } from '../interfaces/server';
 import { SocketEvents } from '../helpers/sockets';
 import routes from "../routes";
-
+import swagger from '../documentation/swagger';
 
 export class Server implements ServerInterface{
-  private app = express();
-  io: any;
-  server: Express;
-  protocol = PROTOCOL;
-  sockets: any;
+  private app = express(); // app es de express
+  private io: any;
+  private server: // server es de http o https
+    http.Server<typeof http.IncomingMessage, typeof http.ServerResponse> |  
+    https.Server<typeof http.IncomingMessage, typeof http.ServerResponse> | 
+    undefined;
+  private protocol = PROTOCOL;
+  private sockets: any;
 
   constructor(){}
 
-  createServer(): Express {
+  createServer() {
     const serverProtocol = {
       http: () => {
         return http.createServer( this.app );
       },
       https: () => {
         // RUTAS SSL
-        const privateKey = fs.readFileSync(\`\${process.env.SSL_PRIVATE_KEY}\`, 'utf8')
-        const certificate  = fs.readFileSync(\`\${process.env.SSL_CERTIFICATE}\`, 'utf8')
-
         const credentials = {
-            key: privateKey,
-            cert: certificate
+          key: fs.readFileSync(\`\${process.env.SSL_PRIVATE_KEY}\`, 'utf8'),
+          cert: fs.readFileSync(\`\${process.env.SSL_CERTIFICATE}\`, 'utf8')
         };
-        
         return https.createServer( credentials, this.app )
       }
     }
@@ -57,6 +56,7 @@ export class Server implements ServerInterface{
   }
 
   routes(): void {
+    this.app.get('/', (req:Request, res: Response) => { res.send('bienvenido a la api, esta es tu primer ruta')})
     // rutas principales por versiones
     this.app.use("/api/v1", routes);
     
@@ -74,15 +74,14 @@ export class Server implements ServerInterface{
 
   // servir archivo frontend
   frontend(): void {
-    this.app.use( express.static( path.resolve( __dirname, '../../../client/dist' )))
+    this.app.use( express.static( path.resolve( __dirname, '../../client/dist' )))
     this.app.get( "*", (req: Request, res: Response) => {
-      res.sendFile( path.join( __dirname, '../../../client/dist/index.html'))
+      res.sendFile( path.join( __dirname, '../../client/dist/index.html'))
     })
   }
 
   // crear webSockets
   webSockets(): void {
-    // console.log( this.server )
     this.io = new socketio( this.server, /** configuracion */ )
 
     this.sockets = new SocketEvents( this.io );
@@ -90,13 +89,14 @@ export class Server implements ServerInterface{
 
 
   serverOn() {
-    this.server = this.createServer()
+    this.server = this.createServer();
+    swagger.SwaggerDocumentation( this.app ) // documentacion
     this.middlewares();
     this.routes();
     // this.frontend();
     this.webSockets();
     
-    this.server.listen( PORT, () => {
+    this.server!.listen( PORT, () => {
       console.log(\`Servidor escuchando en el puerto \${ PROTOCOL }\${ URL }\${ PORT }\`)
     })
   }

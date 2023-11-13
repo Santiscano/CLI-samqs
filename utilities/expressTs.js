@@ -17,8 +17,10 @@ import {
   createServerInterface, 
   createSocket, 
   createSqlInterface, 
+  createSwagger, 
   createTsConfig
 } from '../docs/ts/class/index.js';
+import { createRouteExample } from '../docs/ts/class/routeExample.js';
 
 
 
@@ -50,11 +52,15 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     fs.writeFileSync( fullRoute, data );
   })
 
-
+  // --------------------------ARCHIVOS .gitkeep-------------------------------------//
+  const logs = path.join(fileProyectPath, '/logs');
+  const temp = path.join(fileProyectPath, '/temp');
+  fs.writeFileSync(path.join(logs, '.gitkeep'), "");
+  fs.writeFileSync(path.join(temp, '.gitkeep'), "");
   // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
   const src = path.join(fileProyectPath, '/src');
   // crear carpetas
-  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities'];
+  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities'];
   folders.forEach(folder => {
     const folderPath = path.join( src, folder );
     fs.mkdirSync(folderPath);
@@ -63,7 +69,8 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
 
   // crear archivos
   const filesSrc = [
-    //! class
+    //* class
+    { route: '/class/.gitkeep',                data: '' },
     
     //! commands
     // { route: '/commands/allTableCrud.js',     data: createAllTableCrud() },
@@ -76,6 +83,10 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/config/configPorts.ts',        data: createConfigPorts() },
     
     //? controllers - void
+    { route: '/controllers/.gitkeep',         data: '' },
+
+    // documentation
+    { route: '/documentation/swagger.ts',     data: createSwagger() },
     
     // helpers  
     { route: '/helpers/sockets.ts',           data: createSocket() },
@@ -87,9 +98,11 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     //! middlewares
     
     //? models - void
+    { route: '/models/.gitkeep',              data: '' },
     
     // routes
     { route: 'routes/index.ts',               data: createRoutes() },
+    { route: '/routes/example.ts',            data: createRouteExample() },
     
     // services
     { route: '/services/index.ts',            data: createServer() },

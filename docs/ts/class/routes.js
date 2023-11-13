@@ -1,12 +1,12 @@
 
 export const createRoutes = () => {
   const data = `import { Router } from "express";
-// list imports routesImport
+import exampleRoutes from './example';
 
 const route = Router();
 
-// list to = 
-// route.use("/", routesImport);
+// list routes 
+// route.use( "/example", exampleRoutes );
 
 export default route;
 `;

@@ -14,6 +14,7 @@ export * from './server.interface.js';
 export * from './server.js';
 export * from './socket.js';
 export * from './sql2.interface.js';
+export * from './swagger.js';
 export * from './tsconfig.js';
 
 // export * from '';
