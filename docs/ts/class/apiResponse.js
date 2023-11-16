@@ -15,7 +15,7 @@ interface Response {
 class ApiResponses {
   constructor() {}
 
-  success(
+  static success(
     data?: Data | any,
     message?: string,
     firebase?: { error: boolean; data: any },
@@ -25,29 +25,29 @@ class ApiResponses {
     return { message, data, firebase, path }
   }
 
-  unsuccessfully( error: unknown ): Response {
+  static unsuccessfully( error: unknown ): Response {
     console.log(error);
     // agregar un errorLogger que cree los logs de error
     return { error: true, message: 'SERVER_PROBLEM' };
   }
 
-  errorMessage( message: string ): Response {
+  static errorMessage( message: string ): Response {
     return { error: true, message };
   }
 
-  unauthorized(): Response {
+  static unauthorized(): Response {
     return { error:true, message: 'YOU_DONT_HAVE_UNAUTHORIZED'}
   }
 
-  updateToken( token: string ): Response {
+  static updateToken( token: string ): Response {
     return { message: 'UPDATE_TOKEN', token };
   }
   
-  uncompleted( missing:string | undefined ): Response {
+  static uncompleted( missing:string | undefined ): Response {
     return { error: true, message: 'INCOMPLETE_INFORMATION', missing };
   }
 
-  serverError(){
+  static serverError(){
     return { error: true, message: 'SERVER_ERROR' }
   }
 }

@@ -26,7 +26,7 @@ class StringsMethods {
   * @returns  solucionesenviexpress.com/QR/web
   */
   static deleteProtocol(url:string) {
-    const matches = url.match(/\/\/(.*?)\.com/);
+    const matches = url.match(/\\/\\/(.*?)\\.com/);
     if (matches && matches.length > 1) {
       const capturedString = matches[1];
       return capturedString;
@@ -58,8 +58,33 @@ class StringsMethods {
     return \`\${fileNameWithoutSpaces}\${extension}\`;
   }
 
+  // 1- convertir camelCase a PascalCase
+  static camelToPascal = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  // 2- convertir camelCase a snake_case
+  static camelToSnake = (camelCase: string) => {
+    const snakeCase = camelCase.replace(
+      /[A-Z]/g,
+      (match) => "_" + match.toLowerCase()
+    );
+    return snakeCase;
+  };
+
   /**
-   * remplaza el string de snake case a camel case
+   * remplaza el string de snake_case a PascalCase
+   * @param snakeCase 
+   * @returns PascalCase
+   */
+  static SnakeToPascal = (snakeCase: string) => {
+    const arrayWords = snakeCase.split("_");
+    const pascalCase = arrayWords.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join("");
+    return pascalCase;
+  }
+
+  /**
+   * remplaza el string de snake_case a camelCase
    * @param snakeCase 
    * @returns camelCase
    */
@@ -70,16 +95,20 @@ class StringsMethods {
     return camelCase;
 }
 
-  /**
-   * remplaza el string de snake case a Pascal case
-   * @param snakeCase 
-   * @returns PascalCase
-   */
-  static SnakeToPascal = (snakeCase: string) => {
-    const arrayWords = snakeCase.split("_");
-    const pascalCase = arrayWords.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join("");
-    return pascalCase;
-  }
+  // 3 -convertir pascal a snake
+  pascalToSnake = (pascalCase: string) => {
+    const snakeCase = pascalCase.replace(
+      /[A-Z]/g,
+      (match, index) => (index !== 0 ? "_" : "") + match.toLowerCase()
+    );
+    return snakeCase;
+  };
+
+  // 4 -pascal a camel
+  export const pascalToCamel = (pascalCase: string) => {
+    const camelCase = pascalCase.charAt(0).toLowerCase() + pascalCase.slice(1);
+    return camelCase;
+  };
 
 }
 

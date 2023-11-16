@@ -10,12 +10,16 @@ class ApiKeys {
 
   validateApikey = ( req: Request, res: Response, next: NextFunction ) => {
     const { api_key } = req.headers;
-    if( api_key !== process.env.API_KEY ) {
-      return res
-        .status(resStatus.unauthorized)
-        .json(ApiResponses.unauthorized)
+    try{
+      if( api_key !== process.env.API_KEY ) {
+        return res
+          .status(resStatus.unauthorized)
+          .json(ApiResponses.unauthorized)
+      }
+      return next();
+    } catch(error){
+      console.log('error: ', error);
     }
-    return next();
   };
 };
 

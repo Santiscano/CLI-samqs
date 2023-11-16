@@ -20,6 +20,7 @@ export const createPackage = (nameProyect, descriptionProyect = '') => {
     "cors": "*",
     "dotenv": "*",
     "express": "*",
+    "jsonwebtoken": "*",
     "mongoose": "*",
     "morgan": "*",
     "multer": "*",

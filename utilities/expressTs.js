@@ -4,6 +4,7 @@ import {
   createAllDatabaseMysql, 
   createApiKey,
   createApiResponse,
+  createClassLogin,
   createConfigPorts, 
   createCrudMongo,
   createCrudMysql,
@@ -12,7 +13,8 @@ import {
   createEditorConfig, 
   createExampleEnv, 
   createGitIgnore, 
-  createIndex, 
+  createIndex,
+  createJWT,
   createLogs,
   createMissingData,
   createMongooseConfig, 
@@ -22,14 +24,17 @@ import {
   createResStatus,
   createRouteExample,
   createRoutes, 
+  createSendFileTemp,
   createServer, 
   createServerInterface, 
-  createSocket, 
+  createSocket,
+  createSqlCrud,
   createSqlInterface, 
   createStringMethods,
   createSwagger, 
-  createToken,
   createTsConfig,
+  createValidateToken,
+  createVerifyUserPassword,
 } from '../docs/ts/class/index.js';
 
 
@@ -54,7 +59,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '.editorconfig', data: createEditorConfig() },
     { route: '.example.env',  data: createExampleEnv() },
     { route: '.gitignore',    data: createGitIgnore() },
-    { route: 'package.json',  data: createPackage(nameProyect) },
+    { route: 'package.json',  data: createPackage(nameProyect, "aun no se a agregado la pregunta de descripcion") },
     { route: 'tsconfig.json', data: createTsConfig() }
   ];
   files.forEach(( { route, data }) => {
@@ -70,7 +75,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
   // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
   const src = path.join(fileProyectPath, '/src');
   // crear carpetas
-  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities', 'utilities/PDF', 'utilities/PDF/upload', 'utilities/SQL' ];
+  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities', 'utilities/PDF', 'utilities/PDF/upload' ];
   folders.forEach(folder => {
     const folderPath = path.join( src, folder );
     fs.mkdirSync(folderPath);
@@ -80,60 +85,66 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
   // crear archivos
   const filesSrc = [
     //* class
-    { route: '/class/.gitkeep',                data: '' },
+    { route: '/class/.gitkeep',                   data: '' },
+    // { route: '/class/login.controller.ts',    data: createClassLogin() }, // login
+    // { route: '/class/login.model.ts',         data: '' }, // login
     
     //! commands
-    { route: '/commands/allDatabaseMysql.ts', data: createAllDatabaseMysql() },
-    { route: '/commands/crudMongo.ts',        data: createCrudMongo() },
-    { route: '/commands/crudMysql.ts',        data: createCrudMysql() },
-    { route: '/commands/procedure.js',        data: createCrudProcedure() },
+    { route: '/commands/allDatabaseMysql.ts',     data: createAllDatabaseMysql() },
+    { route: '/commands/crudMongo.ts',            data: createCrudMongo() },
+    { route: '/commands/crudMysql.ts',            data: createCrudMysql() },
+    { route: '/commands/procedure.ts',            data: createCrudProcedure() },
 
     // config
-    { route: '/config/database/mongoose.ts',  data: createMongooseConfig() },
-    { route: '/config/database/mysql.ts',     data: createMysqlConfig() },
-    { route: '/config/configPorts.ts',        data: createConfigPorts() },
+    { route: '/config/database/mongoose.ts',      data: createMongooseConfig() },
+    { route: '/config/database/mysql.ts',         data: createMysqlConfig() },
+    { route: '/config/configPorts.ts',            data: createConfigPorts() },
     
     //? controllers - void
-    { route: '/controllers/.gitkeep',         data: '' },
+    { route: '/controllers/.gitkeep',             data: '' },
 
     // documentation
-    { route: '/documentation/swagger.ts',     data: createSwagger() },
+    { route: '/documentation/swagger.ts',         data: createSwagger() },
     
     // helpers  
-    { route: '/helpers/sockets.ts',           data: createSocket() },
+    { route: '/helpers/apiResponse.ts',           data: createApiResponse() },
+    { route: '/helpers/jwt.ts',                   data: createJWT() },
+    { route: '/helpers/logs.utilities.ts',        data: createLogs() },
+    { route: '/helpers/missingData.ts',           data: createMissingData() },
+    { route: '/helpers/resStatus.ts',             data: createResStatus() },
+    { route: '/helpers/sendFileTemp.ts',          data: createSendFileTemp() },
+    { route: '/helpers/sockets.ts',               data: createSocket() },
+    { route: '/helpers/sqlCrud.ts',               data: createSqlCrud() },
+    
     
     // interfaces
-    { route: '/interfaces/server.d.ts',       data: createServerInterface() },
-    { route: '/interfaces/sql2.d.ts',         data: createSqlInterface() },
+    { route: '/interfaces/server.d.ts',           data: createServerInterface() },
+    { route: '/interfaces/sql2.d.ts',             data: createSqlInterface() },
     
     //! middlewares
-    { route: '/middlewares/apiKey.ts' ,       data: createApiKey() },
-    { route: '/middlewares/token.ts' ,        data: createToken() },
+    { route: '/middlewares/apiKey.ts' ,           data: createApiKey() },
+    { route: '/middlewares/token.ts' ,            data: createValidateToken() },
+    { route: '/middlewares/verifyUserPassword.ts',data: createVerifyUserPassword() },
     
     //? models - void
-    { route: '/models/.gitkeep',              data: '' },
+    { route: '/models/.gitkeep',                  data: '' },
     
     // routes
-    { route: '/routes/example.ts',            data: createRouteExample() },
-    { route: 'routes/index.ts',               data: createRoutes() },
+    { route: '/routes/example.ts',                data: createRouteExample() },
+    { route: 'routes/index.ts',                   data: createRoutes() },
     
     // services
-    { route: '/services/index.ts',            data: createServer() },
+    { route: '/services/index.ts',                data: createServer() },
     
-    //! utilities
-    { route: '/utilities/apiResponse.ts',     data: createApiResponse() },
-    { route: '/utilities/dateMethods.ts',     data: createDateMethods() },
-    { route: '/utilities/logs.utilities.ts',  data: createLogs() },
-    { route: '/utilities/missingData.ts',     data: createMissingData() },
-    { route: '/utilities/numbersMethods.ts',  data: createNumberMethods() },
-    { route: '/utilities/resStatus.ts',       data: createResStatus() },
-    { route: '/utilities/stringMethods.ts',   data: createStringMethods() },
+    // utilities
+    { route: '/utilities/dateMethods.ts',         data: createDateMethods() },
+    { route: '/utilities/numbersMethods.ts',      data: createNumberMethods() },
+    { route: '/utilities/stringMethods.ts',       data: createStringMethods() },
     //! utilities/PDF
     //! utilities/PDF/upload
-    //! utilities/SQL
-    
+
     // index
-    { route: 'index.ts',                      data: createIndex() },
+    { route: 'index.ts',                          data: createIndex() },
   ];
   filesSrc.forEach(( { route, data } ) => {
     let fullRoute = path.join(src, route);

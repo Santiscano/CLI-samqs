@@ -2,7 +2,7 @@
 export const createSqlInterface = () => {
   const data = `import { RowDataPacket, OkPacket, ResultSetHeader } from "mysql2";
 
-type Data =
+type SQLResponse =
   | RowDataPacket[]
   | RowDataPacket[][]
   | OkPacket
@@ -10,7 +10,7 @@ type Data =
   | ResultSetHeader
   | ResultSetHeader[];
 
-export default Data;
+export default SQLResponse;
 `;
 
   return data;
