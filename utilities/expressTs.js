@@ -3,28 +3,34 @@ import path from 'path';
 import { 
   createAllDatabaseMysql, 
   createApiKey,
+  createApiResponse,
   createConfigPorts, 
   createCrudMongo,
   createCrudMysql,
   createCrudProcedure, 
+  createDateMethods,
   createEditorConfig, 
   createExampleEnv, 
   createGitIgnore, 
   createIndex, 
+  createLogs,
+  createMissingData,
   createMongooseConfig, 
   createMysqlConfig, 
-  createOn, 
+  createNumberMethods,
   createPackage, 
+  createResStatus,
+  createRouteExample,
   createRoutes, 
   createServer, 
   createServerInterface, 
   createSocket, 
   createSqlInterface, 
+  createStringMethods,
   createSwagger, 
   createToken,
-  createTsConfig
+  createTsConfig,
 } from '../docs/ts/class/index.js';
-import { createRouteExample } from '../docs/ts/class/routeExample.js';
 
 
 
@@ -115,13 +121,13 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/services/index.ts',            data: createServer() },
     
     //! utilities
-    { route: '/utilities/apiResponse.ts',     data: '' },
-    { route: '/utilities/dateMethods.ts',     data: '' },
-    { route: '/utilities/logs.utilities.ts',  data: '' },
-    { route: '/utilities/missingData.ts',     data: '' },
-    { route: '/utilities/numbersMethods.ts',  data: '' },
-    { route: '/utilities/resStatus.ts',       data: '' },
-    { route: '/utilities/stringMethods.ts',   data: '' },
+    { route: '/utilities/apiResponse.ts',     data: createApiResponse() },
+    { route: '/utilities/dateMethods.ts',     data: createDateMethods() },
+    { route: '/utilities/logs.utilities.ts',  data: createLogs() },
+    { route: '/utilities/missingData.ts',     data: createMissingData() },
+    { route: '/utilities/numbersMethods.ts',  data: createNumberMethods() },
+    { route: '/utilities/resStatus.ts',       data: createResStatus() },
+    { route: '/utilities/stringMethods.ts',   data: createStringMethods() },
     //! utilities/PDF
     //! utilities/PDF/upload
     //! utilities/SQL
