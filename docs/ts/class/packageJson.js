@@ -7,9 +7,13 @@ export const createPackage = (nameProyect, descriptionProyect = '') => {
   "description": "${descriptionProyect}",
   "main": "index.js",
   "scripts": {
+    "allDatabaseMySQL": "ts-node-dev --transpile-only src/commands/allDatabaseMySQL.ts",
     "build": "tsc",
-    "prestart": "npm run build",
+    "crudMongo": "ts-node-dev --transpile-only src/commands/crudMongo.ts",
+    "crudMySQL": "ts-node-dev --transpile-only src/commands/crudMysql.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
     "test": "echo \\"Error: no test specified\\" && exit 1"
   },
   "dependencies": {

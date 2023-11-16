@@ -1,23 +1,27 @@
 import fs from 'fs';
 import path from 'path';
 import { 
-  createAllTableCrud, 
+  createAllDatabaseMysql, 
+  createApiKey,
   createConfigPorts, 
+  createCrudMongo,
+  createCrudMysql,
+  createCrudProcedure, 
   createEditorConfig, 
   createExampleEnv, 
   createGitIgnore, 
   createIndex, 
   createMongooseConfig, 
   createMysqlConfig, 
-  createOneTableCrud, 
+  createOn, 
   createPackage, 
-  createProcedure, 
   createRoutes, 
   createServer, 
   createServerInterface, 
   createSocket, 
   createSqlInterface, 
   createSwagger, 
+  createToken,
   createTsConfig
 } from '../docs/ts/class/index.js';
 import { createRouteExample } from '../docs/ts/class/routeExample.js';
@@ -60,7 +64,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
   // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
   const src = path.join(fileProyectPath, '/src');
   // crear carpetas
-  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities'];
+  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities', 'utilities/PDF', 'utilities/PDF/upload', 'utilities/SQL' ];
   folders.forEach(folder => {
     const folderPath = path.join( src, folder );
     fs.mkdirSync(folderPath);
@@ -73,13 +77,14 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/class/.gitkeep',                data: '' },
     
     //! commands
-    // { route: '/commands/allTableCrud.js',     data: createAllTableCrud() },
-    // { route: '/commands/oneTableCrud.js',     data: createOneTableCrud() },
-    // { route: '/commands/procedure.js',        data: createProcedure() },
+    { route: '/commands/allDatabaseMysql.ts', data: createAllDatabaseMysql() },
+    { route: '/commands/crudMongo.ts',        data: createCrudMongo() },
+    { route: '/commands/crudMysql.ts',        data: createCrudMysql() },
+    { route: '/commands/procedure.js',        data: createCrudProcedure() },
 
     // config
-    { route: '/config/database/mysql.ts',     data: createMysqlConfig() },
     { route: '/config/database/mongoose.ts',  data: createMongooseConfig() },
+    { route: '/config/database/mysql.ts',     data: createMysqlConfig() },
     { route: '/config/configPorts.ts',        data: createConfigPorts() },
     
     //? controllers - void
@@ -96,18 +101,30 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/interfaces/sql2.d.ts',         data: createSqlInterface() },
     
     //! middlewares
+    { route: '/middlewares/apiKey.ts' ,       data: createApiKey() },
+    { route: '/middlewares/token.ts' ,        data: createToken() },
     
     //? models - void
     { route: '/models/.gitkeep',              data: '' },
     
     // routes
-    { route: 'routes/index.ts',               data: createRoutes() },
     { route: '/routes/example.ts',            data: createRouteExample() },
+    { route: 'routes/index.ts',               data: createRoutes() },
     
     // services
     { route: '/services/index.ts',            data: createServer() },
     
     //! utilities
+    { route: '/utilities/apiResponse.ts',     data: '' },
+    { route: '/utilities/dateMethods.ts',     data: '' },
+    { route: '/utilities/logs.utilities.ts',  data: '' },
+    { route: '/utilities/missingData.ts',     data: '' },
+    { route: '/utilities/numbersMethods.ts',  data: '' },
+    { route: '/utilities/resStatus.ts',       data: '' },
+    { route: '/utilities/stringMethods.ts',   data: '' },
+    //! utilities/PDF
+    //! utilities/PDF/upload
+    //! utilities/SQL
     
     // index
     { route: 'index.ts',                      data: createIndex() },

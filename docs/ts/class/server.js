@@ -9,7 +9,7 @@ import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import bodyParser from 'body-parser';
-import {Server as socketio} from 'socket.io';
+import { Server as socketio } from 'socket.io';
 
 import { PORT, URL, PROTOCOL } from '../config/configPorts';
 import { protocol } from '../interfaces/server'

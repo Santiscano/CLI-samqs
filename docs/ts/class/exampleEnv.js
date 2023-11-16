@@ -1,7 +1,7 @@
 
 
 export const createExampleEnv = () => {
-    const data = `
+  const data = `
 LOCAL_PORT = 4500
 SERVER_PORT = 443
 URL_LOCAL = http://localhost
@@ -33,17 +33,6 @@ BUCKET_ASSIGN = prueba
 SSL_PRIVATE_KEY =
 SSL_CERTIFICATE =
 
-LOCAL
-"scripts": {
-    "build": "tsc",
-    "prestart": "npm run build",
-    "start": "ts-node-dev --respawn --transpile-only src/index.ts"
-}
-HEROKU
-"scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc"
-}
 `;
 
     return data;
