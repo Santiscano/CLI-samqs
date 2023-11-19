@@ -1,6 +1,9 @@
 
 export const createGitIgnore = () => {
-    const data = `.env
+  const data = `# dotenv environment variables file
+.env
+.env.test
+
 # Logs
 *.log
 npm-debug.log*
@@ -9,6 +12,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# node_modules & build
 node_modules
 dist
 dist-ssr
@@ -24,13 +28,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-companyFiles/
-temp/
-keys/
 
-# dotenv environment variables file
-.env
-.env.test
+temp/*
+keys/*
 `;
 
     return data;

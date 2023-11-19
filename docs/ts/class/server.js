@@ -11,8 +11,8 @@ import cors from "cors";
 import bodyParser from 'body-parser';
 import { Server as socketio } from 'socket.io';
 
-import { PORT, URL, PROTOCOL } from '../config/configPorts';
-import { protocol } from '../interfaces/server'
+import { PORT, URL, PROTOCOL, SSL_PRIVATE_KEY, SSL_CERTIFICATE } from '../config/configPorts';
+import { Protocol } from '../interfaces/server'
 import { ServerInterface } from '../interfaces/server';
 import { SocketEvents } from '../helpers/sockets';
 import routes from "../routes";
@@ -38,13 +38,13 @@ export class Server implements ServerInterface{
       https: () => {
         // RUTAS SSL
         const credentials = {
-          key: fs.readFileSync(\`\${process.env.SSL_PRIVATE_KEY}\`, 'utf8'),
-          cert: fs.readFileSync(\`\${process.env.SSL_CERTIFICATE}\`, 'utf8')
+          key: fs.readFileSync(\`\${SSL_PRIVATE_KEY}\`, 'utf8'),
+          cert: fs.readFileSync(\`\${SSL_CERTIFICATE}\`, 'utf8')
         };
         return https.createServer( credentials, this.app )
       }
     }
-    return serverProtocol[this.protocol as protocol ]();
+    return serverProtocol[this.protocol as Protocol ]();
   }
 
   middlewares(): void {
@@ -56,7 +56,9 @@ export class Server implements ServerInterface{
   }
 
   routes(): void {
+    
     this.app.get('/', (req:Request, res: Response) => { res.send('bienvenido a la api, esta es tu primer ruta')})
+    
     // rutas principales por versiones
     this.app.use("/api/v1", routes);
     
@@ -102,6 +104,7 @@ export class Server implements ServerInterface{
   }
 
 }
+  
 `;
 
   return data;

@@ -33,6 +33,7 @@ export const createPackage = (nameProyect, descriptionProyect = '') => {
     "@types/cors": "*",
     "@types/dotenv": "*",
     "@types/express": "*",
+    "@types/jsonwebtoken": "*",
     "@types/mongoose": "*",
     "@types/morgan": "*",
     "@types/multer": "*",
