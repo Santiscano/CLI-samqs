@@ -1,20 +1,41 @@
 
-
 export const createExampleEnv = () => {
   const data = `
-LOCAL_PORT = 4500
-SERVER_PORT = 443
-URL_LOCAL = http://localhost
-URL_SERVER = https://solucionesenviexpress.com
+# SERVIDOR LOCAL O REMOTO CON PROTOCOLO DE CONEXION
+PROTOCOL = 'http'
+URL = '://localhost:'
+PORT = 4500
 
-#MySQL
-DB_HOST = localhost
-DB_USER = root
-DB_DB = localdigitalizacion
+# BASES DE DATOS
+# 1- MySQL
+DB_HOST = "localhost"
+DB_USER = "root"
+DB_DB = "localdigitalizacion"
 DB_PORT = 3306
-DB_PASSWORD = Santi1026
+DB_PASSWORD = "Santi1026"
 
+# 2- MONGODB
+MONGODB_URI = "contraseña_db"
+
+
+# SECURIDAD
+# JWT
+SECRET_KEY = "visita y crea en: https://joaneeet7.github.io/online-tools/sha256.html"
+EXPIRE_TOKEN = "24h" || "1d" || 60 * 60 * 24 
 API_KEY = 283749860296492735462875694752698
+
+
+# SSL
+SSL_PRIVATE_KEY = "SSL_PRIVATE_KEY"
+SSL_CERTIFICATE = "SSL_CERTIFICATE"
+
+
+
+
+
+
+
+
 
 #FIREBASE
 API_KEY_FIREBASE = hgJHAGLGkhjgkk4hjgKJAHJG34H5
@@ -31,8 +52,7 @@ BUCKET_ASSIGN = prueba
 
 #SSL
 SSL_PRIVATE_KEY =
-SSL_CERTIFICATE =
-
+SSL_CERTIFICATE =  
 `;
 
     return data;
