@@ -4,7 +4,10 @@ import {
   createAllDatabaseMysql, 
   createApiKey,
   createApiResponse,
-  createClassLogin,
+  createApiResponseInterface,
+  createAuthContextInterface,
+  createAuthController,
+  createAuthStrategy,
   createConfigPorts, 
   createCrudMongo,
   createCrudMysql,
@@ -16,12 +19,14 @@ import {
   createIndex,
   createJWT,
   createLogs,
+  createLogsInterface,
   createMissingData,
   createMongooseConfig, 
   createMysqlConfig, 
   createNumberMethods,
   createPackage, 
   createResStatus,
+  createRouteAuth,
   createRouteExample,
   createRoutes, 
   createSendFileTemp,
@@ -85,10 +90,8 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
   // crear archivos
   const filesSrc = [
     //* class
-    { route: '/class/.gitkeep',                   data: '' },
-    // { route: '/class/login.controller.ts',    data: createClassLogin() }, // login
-    // { route: '/class/login.model.ts',         data: '' }, // login
-    
+    { route: './class/auth.strategy.ts',    data: createAuthStrategy() },
+
     //! commands
     { route: '/commands/allDatabaseMysql.ts',     data: createAllDatabaseMysql() },
     { route: '/commands/crudMongo.ts',            data: createCrudMongo() },
@@ -102,6 +105,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     
     //? controllers - void
     { route: '/controllers/.gitkeep',             data: '' },
+    { route: '/controllers/auth.controller.ts',   data: createAuthController() },
 
     // documentation
     { route: '/documentation/swagger.ts',         data: createSwagger() },
@@ -116,8 +120,10 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/helpers/sockets.ts',               data: createSocket() },
     { route: '/helpers/sqlCrud.ts',               data: createSqlCrud() },
     
-    
     // interfaces
+    { route: '/interfaces/apiResponse.d.ts',      data: createApiResponseInterface() },
+    { route: '/interfaces/authContext.d.ts',      data: createAuthContextInterface() },
+    { route: '/interfaces/logs.d.ts',             data: createLogsInterface() },
     { route: '/interfaces/server.d.ts',           data: createServerInterface() },
     { route: '/interfaces/sql2.d.ts',             data: createSqlInterface() },
     
@@ -130,7 +136,8 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/models/.gitkeep',                  data: '' },
     
     // routes
-    { route: '/routes/example.ts',                data: createRouteExample() },
+    { route: '/routes/auth.routes.ts',            data: createRouteAuth() },
+    { route: '/routes/example.routes.ts',         data: createRouteExample() },
     { route: 'routes/index.ts',                   data: createRoutes() },
     
     // services

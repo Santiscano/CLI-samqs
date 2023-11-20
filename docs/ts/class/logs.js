@@ -3,26 +3,7 @@ export const createLogs = () => {
   const data = `import * as fs from 'fs-extra';
 import path from 'path';
 import moment from 'moment-timezone';
-
-export interface Logs {
-  fileName: string;
-  id?: number;
-  error: boolean;
-  date?: string;
-  files_account_type_number: string;
-  files_cost_center: string;
-  files_code_accounting: string;
-  users_identification_type: string;
-  users_identification: string;
-  message: string;
-};
-
-export interface GeneralLogs {
-  fileName: string;
-  id?: string | number;
-  error: boolean;
-  message: string;
-};
+import { GeneralLogs, Logs } from '../interfaces/logs';
 
 // UBICACIÓN DE LOS LOGS
 const logPath = path.join(__dirname, '../../logs'); 
@@ -31,7 +12,7 @@ class WriteLog {
 
   constructor(){}
 
-  write( data: GeneralLogs ) {
+  static write( data: GeneralLogs ) {
     // HORA LOCAL COLOMBIA
     const date = moment.tz(new Date(), "America/Bogota").format();
     const newDate = date.replace("-05:00", "").replace("T", " ");
@@ -54,7 +35,7 @@ class WriteLog {
     //** MENSAJE DEL LOG */
     let infoLog = \`\${newDate} \${alert} IDENTIFICATION: \${id} \${data.message.toUpperCase()}\\n\`
     
-    fs.appendFile(filePath, infoLog, async (err) => {
+    fs.appendFile(filePath, infoLog, async ( err: NodeJS.ErrnoException | null ) => {
       if (err) {
         await fs.ensureDir(logPath);                            // CREA CARPETA
         fs.writeFile(logPath + fileName, infoLog);              // CREA ARCHIVO

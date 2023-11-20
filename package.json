@@ -1,10 +1,10 @@
 {
-  "name": "create-proyect-console",
-  "version": "0.0.7",
-  "description": "CLI creacion de proyectos con un template",
+  "name": "cli-samqs",
+  "version": "0.0.9",
+  "description": "CLI for quick start of projects with templates",
   "main": "index.js",
   "bin": {
-    "create-proyect-console": "index.js"
+    "cli-samqs": "index.js"
   },
   "type": "module",
   "scripts": {
@@ -20,12 +20,12 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Santiscano/CLI-create-proyect-console.git"
+    "url": "git+https://github.com/Santiscano/CLI-samqs.git"
   },
   "bugs": {
-    "url": "https://github.com/Santiscano/CLI-create-proyect-console/issues"
+    "url": "https://github.com/Santiscano/CLI-samqs/issues"
   },
-  "homepage": "https://github.com/Santiscano/CLI-create-proyect-console#readme",
+  "homepage": "https://github.com/Santiscano/CLI-samqs#readme",
   "directories": {
     "doc": "docs"
   }

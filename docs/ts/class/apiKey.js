@@ -2,8 +2,11 @@
 export const createApiKey = () => {
   const data = `import "dotenv/config";
 import { Request, Response, NextFunction } from "express";
-import { resStatus } from "../utilities/resStatus";
-import ApiResponses from "../utilities/apiResponse";
+
+import { API_KEY } from "../config/configPorts";
+import { resStatus } from "../helpers/resStatus";
+import ApiResponses from "../helpers/apiResponse";
+
 
 class ApiKeys {
   constructor(){}
@@ -11,10 +14,10 @@ class ApiKeys {
   validateApikey = ( req: Request, res: Response, next: NextFunction ) => {
     const { api_key } = req.headers;
     try{
-      if( api_key !== process.env.API_KEY ) {
+      if( api_key !== API_KEY ) {
         return res
           .status(resStatus.unauthorized)
-          .json(ApiResponses.unauthorized)
+          .json(ApiResponses.unauthorized())
       }
       return next();
     } catch(error){
@@ -23,7 +26,9 @@ class ApiKeys {
   };
 };
 
-export default ApiKeys;`;
+export default ApiKeys;
+
+`;
 
   return data;
 };

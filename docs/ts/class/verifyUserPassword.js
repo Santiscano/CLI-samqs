@@ -1,6 +1,6 @@
 
 export const createVerifyUserPassword = () => {
-  const data = `// in progress`
+  const data = `// in progress `
 
   return data;
 }

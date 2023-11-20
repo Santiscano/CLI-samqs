@@ -3,6 +3,7 @@ export const createResStatus = () => {
   const data = `
 export const resStatus = {
   success: 200,
+  badRquest: 400,
   unauthorized: 401,
   notFound: 404,
   noContent: 417,

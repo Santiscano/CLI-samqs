@@ -1,16 +1,8 @@
 
 export const createApiResponse = () => {
   const data = `import Data from "../interfaces/sql2";
+import { Response } from "../interfaces/apiResponse";
 
-interface Response {
-  error?: boolean;
-  message: string;
-  data?: Data | any;
-  missing?: string | number | undefined | null;
-  firebase?: {error: boolean, data: any};
-  path?: Data;
-  token?: string;
-}
 
 class ApiResponses {
   constructor() {}
@@ -53,6 +45,7 @@ class ApiResponses {
 }
 
 export default ApiResponses
+
 `;
 
   return data;

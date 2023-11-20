@@ -25,11 +25,13 @@ export const express = async (tool, paradigm, nameProyect) => {
     switch (toolParadigm) {
         case 'javascript-class':
           console.log( 'javascript-class aun esta en desarrollo'.red.bold );
-          fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
+          // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
+          fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
         case 'javascript-func':
           console.log( 'javascript-func aun esta en desarrollo'.red.bold );
-          fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
+          // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
+          fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
 
         case 'typescript-class':
@@ -38,7 +40,8 @@ export const express = async (tool, paradigm, nameProyect) => {
         break;
         case 'typescript-func':
           console.log( 'typescript-func aun esta en desarrollo'.red.bold );
-          fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
+          // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
+          fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
     }
 };
@@ -48,8 +51,8 @@ const success = (nameProyectFormat) => {
   console.log('============================================================================================================================='.green);
   console.log('el proyecto se ha creado con exito, digita los siguientes comandos'.white.bold);
   console.log(`cd ${nameProyectFormat}`.blue);
-  console.log('npm install --save cors dotenv express mongoose morgan multer mysql2 socket.io'.blue);
-  console.log('npm install -D @types/cors @types/dotenv @types/express @types/mongoose @types/morgan @types/multer ts-node-dev typescript'.blue);
+  console.log('npm install --save cors dotenv express jsonwebtoken mongoose morgan multer mysql2 socket.io swagger-jsdoc swagger-ui-express'.blue);
+  console.log('npm install -D @types/cors @types/dotenv @types/express @types/mongoose @types/morgan @types/multer @types/swagger-jsdoc @types/swagger-ui-express ts-node-dev typescript'.blue);
   console.log('============================================================================================================================='.green);
   console.log('============================================================================================================================='.green);
 };

@@ -68,7 +68,7 @@ const route = Router();
  *              items:
  *                $ref: '#/components/schemas/Task'
 */
-route.get("/", (req: Request, res: Response) => res.send('traer tareas test'));
+route.get("/", (req: Request, res: Response) => res.json({ msg: 'traer tareas test' }));
 
 /**
  * @swagger

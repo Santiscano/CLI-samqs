@@ -96,7 +96,7 @@ class StringsMethods {
 }
 
   // 3 -convertir pascal a snake
-  pascalToSnake = (pascalCase: string) => {
+  static pascalToSnake = (pascalCase: string) => {
     const snakeCase = pascalCase.replace(
       /[A-Z]/g,
       (match, index) => (index !== 0 ? "_" : "") + match.toLowerCase()
@@ -105,7 +105,7 @@ class StringsMethods {
   };
 
   // 4 -pascal a camel
-  export const pascalToCamel = (pascalCase: string) => {
+  static pascalToCamel = (pascalCase: string) => {
     const camelCase = pascalCase.charAt(0).toLowerCase() + pascalCase.slice(1);
     return camelCase;
   };

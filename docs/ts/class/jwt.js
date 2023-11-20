@@ -2,9 +2,9 @@
 export const createJWT = () => {
   const data = `import "dotenv/config";
 import jwt from "jsonwebtoken";
+import { EXPIRE_TOKEN, SECRET_KEY } from "../config/configPorts";
 
-const secretKey = process.env.JWT_SECRET;
-if (!secretKey) {
+if (!SECRET_KEY) {
   throw new Error("Missing JWT Secret");
 }
 
@@ -13,14 +13,14 @@ class JWT {
   /**
    * Genera un token JWT a partir de los datos de usuario proporcionados.
    * @param {Object} userData - Datos del usuario que se incluirán en el token.
-   * @param {number | string} expiresIn - Duración de validez del token (puede ser un número en segundos o una cadena que represente un intervalo de tiempo, por ejemplo, '24h').
    * @returns {string | null} - Token JWT generado o null en caso de error.
    */
-  static generateToken(userData: {}, expiresIn: number | string = '24h' ): string | null {
+  static createToken( userData: Record<string, string>): string | undefined {
     try {
-      return jwt.sign({ userData }, secretKey, { expiresIn });
-    } catch(err) {
-      console.log('Error generating token', err);
+      return jwt.sign({...userData}, SECRET_KEY, { expiresIn: EXPIRE_TOKEN } );
+    } catch (error) {
+      console.log('Error generating token', error);
+      return undefined
     }
   }
 
@@ -30,14 +30,13 @@ class JWT {
    * @returns {any} - Datos decodificados del token si es válido, de lo contrario, se lanza un error.
    * @throws {Error} - Se lanza un error si el token es inválido o no es una cadena.
    */
-  static verifyToken(token: string): any {
+  static verifyToken(token: string = ""): any {
     if (typeof token !== "string") throw new Error('Invalid Token');
 
     try {
-      return jwt.verify(token, secretKey);
+      return jwt.verify(token, SECRET_KEY);
     } catch (err) {
-      console.log(err);
-      throw new Error('Invalid Token');
+      return err;
     }
   }
 
@@ -45,6 +44,14 @@ class JWT {
 
 export default JWT;
 
+// como user createToken
+// import JWT from "../helpers/jwt.ts"
+// const token = JWT.createToken({name:"Juan", email:"juan@gmail.com"})
+// console.log(token)
+
+// como user verifyToken
+// import JWT from "../helpers/jwt.ts"
+// const data = JWT.verifyToken(token)
 `;
 
   return data;
