@@ -30,7 +30,7 @@ class JWT {
    * @returns {any} - Datos decodificados del token si es válido, de lo contrario, se lanza un error.
    * @throws {Error} - Se lanza un error si el token es inválido o no es una cadena.
    */
-  static verifyToken(token: string = ""): any {
+  static verifyToken(token: string = ""): string | jwt.JwtPayload | unknown {
     if (typeof token !== "string") throw new Error('Invalid Token');
 
     try {

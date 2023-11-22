@@ -7,8 +7,8 @@ type SQLResponse =
   | RowDataPacket[][]
   | OkPacket
   | OkPacket[]
-  | ResultSetHeader
-  | ResultSetHeader[];
+  | ResultSetHeader[]
+  | ProcedureCallPacket;
 
 export default SQLResponse;
 `;

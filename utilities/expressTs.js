@@ -9,20 +9,26 @@ import {
   createAuthController,
   createAuthStrategy,
   createConfigPorts, 
+  createControllerMongo, 
+  createControllerMySql, 
   createCrudMongo,
   createCrudMysql,
   createCrudProcedure, 
   createDateMethods,
   createEditorConfig, 
   createExampleEnv, 
+  createFilesExcel, 
   createGitIgnore, 
   createIndex,
   createJWT,
   createLogs,
   createLogsInterface,
   createMissingData,
+  createModelMongo,
+  createModelMySql,
   createMongooseConfig, 
   createMysqlConfig, 
+  createNodeMailer, 
   createNumberMethods,
   createPackage, 
   createResStatus,
@@ -94,8 +100,12 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
 
     //! commands
     { route: '/commands/allDatabaseMysql.ts',     data: createAllDatabaseMysql() },
+    { route: '/commands/controllerMongo.ts',      data: createControllerMongo() },
+    { route: '/commands/controllerMySql.ts',      data: createControllerMySql() },
     { route: '/commands/crudMongo.ts',            data: createCrudMongo() },
     { route: '/commands/crudMysql.ts',            data: createCrudMysql() },
+    { route: '/commands/modelMongo.ts',           data: createModelMongo() },
+    { route: '/commands/modelMySql.ts',           data: createModelMySql() },
     { route: '/commands/procedure.ts',            data: createCrudProcedure() },
 
     // config
@@ -104,7 +114,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '/config/configPorts.ts',            data: createConfigPorts() },
     
     //? controllers - void
-    { route: '/controllers/.gitkeep',             data: '' },
+    // { route: '/controllers/.gitkeep',             data: '' },
     { route: '/controllers/auth.controller.ts',   data: createAuthController() },
 
     // documentation
@@ -112,9 +122,11 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     
     // helpers  
     { route: '/helpers/apiResponse.ts',           data: createApiResponse() },
+    { route: '/helpers/apiResponse.ts',           data: createFilesExcel() },
     { route: '/helpers/jwt.ts',                   data: createJWT() },
     { route: '/helpers/logs.utilities.ts',        data: createLogs() },
     { route: '/helpers/missingData.ts',           data: createMissingData() },
+    { route: '/helpers/nodeMailer.ts',            data: createNodeMailer() },
     { route: '/helpers/resStatus.ts',             data: createResStatus() },
     { route: '/helpers/sendFileTemp.ts',          data: createSendFileTemp() },
     { route: '/helpers/sockets.ts',               data: createSocket() },
