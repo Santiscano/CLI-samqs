@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { expressTsClass } from '../utilities/expressTs.js';
 
-export const express = async (tool, paradigm, nameProyect) => {
+export const express = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
     console.clear();
 
     // 1- preconfiguraciones
@@ -35,7 +35,7 @@ export const express = async (tool, paradigm, nameProyect) => {
         break;
 
         case 'typescript-class':
-          const isSuccess = expressTsClass(fileProyectPath, nameProyectFormat);
+          const isSuccess = expressTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
           isSuccess && success(nameProyectFormat);
         break;
         case 'typescript-func':

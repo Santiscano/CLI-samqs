@@ -55,7 +55,7 @@ import {
  * @param {*} fileProyectPath ruta de la raiz del proyecto
  * @param {*} nameProyect nombre asignado al proyecto
  */
-export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
+export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionProyect ) => {
   // ----------------------------ARCHIVOS PRINCIPALES-------------------------------------//
   // crear carpetas principales
   const foldersPrimary = [ '/client', '/logs', '/src', '/temp'  ];
@@ -70,7 +70,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     { route: '.editorconfig', data: createEditorConfig() },
     { route: '.example.env',  data: createExampleEnv() },
     { route: '.gitignore',    data: createGitIgnore() },
-    { route: 'package.json',  data: createPackage(nameProyect, "aun no se a agregado la pregunta de descripcion") },
+    { route: 'package.json',  data: createPackage( nameProyect, descriptionProyect ) },
     { route: 'tsconfig.json', data: createTsConfig() }
   ];
   files.forEach(( { route, data }) => {
@@ -122,7 +122,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect ) => {
     
     // helpers  
     { route: '/helpers/apiResponse.ts',           data: createApiResponse() },
-    { route: '/helpers/apiResponse.ts',           data: createFilesExcel() },
+    { route: '/helpers/files.ts',                 data: createFilesExcel() },
     { route: '/helpers/jwt.ts',                   data: createJWT() },
     { route: '/helpers/logs.utilities.ts',        data: createLogs() },
     { route: '/helpers/missingData.ts',           data: createMissingData() },

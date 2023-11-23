@@ -30,6 +30,7 @@ export const expressOptions = async () => {
     const { paradigm } = await inquirer.prompt(paradigmExpress) // paradigma de clases o funciones
 
     const { nameProyect } = await readInput('nameProyect', 'Ingresa el nombre del proyecto:'.blue.italic.bold);
+    const { descriptionProyect } = await readInput('descriptionProyect', 'Ingresa la descripcion del proyecto:'.blue.italic.bold);
 
-    await express(tool, paradigm, nameProyect);
+    await express(tool, paradigm, nameProyect, descriptionProyect );
 }
