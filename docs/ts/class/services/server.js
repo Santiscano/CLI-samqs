@@ -57,7 +57,7 @@ export class Server implements ServerInterface{
 
   routes(): void {
     
-    this.app.get('/', (req:Request, res: Response) => { res.send('bienvenido a la api, esta es tu primer ruta')})
+    this.app.get('/', (req:Request, res: Response) => res.json({ msg:'bienvenido a la api, esta es tu primer ruta'}))
     
     // rutas principales por versiones
     this.app.use("/api/v1", routes);

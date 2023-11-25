@@ -1,6 +1,6 @@
 {
   "name": "cli-samqs",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "CLI for quick start of projects with templates",
   "main": "index.js",
   "bin": {

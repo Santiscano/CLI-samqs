@@ -9,8 +9,7 @@ import {
   createAuthController,
   createAuthStrategy,
   createConfigPorts, 
-  createControllerMongo, 
-  createControllerMySql, 
+  createControllerTemplate, 
   createCrudMongo,
   createCrudMysql,
   createCrudProcedure, 
@@ -21,21 +20,26 @@ import {
   createFilesPdf, 
   createGitIgnore, 
   createIndex,
+  createIndexTemplate,
+  createInterfaceTemplate,
   createJWT,
   createLogs,
   createLogsInterface,
   createMissingData,
   createModelMongo,
   createModelMySql,
+  createModelTemplate,
   createMongooseConfig, 
   createMysqlConfig, 
   createNodeMailer, 
   createNumberMethods,
   createPackage, 
+  createProcedureTemplate, 
   createResStatus,
   createRouteAuth,
   createRouteExample,
   createRoutes, 
+  createRoutesTemplate, 
   createSendFileTemp,
   createServer, 
   createServerInterface, 
@@ -44,6 +48,7 @@ import {
   createSqlInterface, 
   createStringMethods,
   createSwagger, 
+  createTableSql, 
   createTsConfig,
   createValidateToken,
   createVerifyUserPassword,
@@ -87,7 +92,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
   // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
   const src = path.join(fileProyectPath, '/src');
   // crear carpetas
-  const folders = ['/class', '/commands', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', 'utilities', 'utilities/PDF', 'utilities/PDF/upload' ];
+  const folders = ['/class', '/commands', '/commands/templates', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', '/SQL', 'utilities', 'utilities/PDF', 'utilities/PDF/upload' ];
   folders.forEach(folder => {
     const folderPath = path.join( src, folder );
     fs.mkdirSync(folderPath);
@@ -99,15 +104,21 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     //* class
     { route: './class/auth.strategy.ts',    data: createAuthStrategy() },
 
-    //! commands
+    // commands/templates
+    { route: '/commands/templates/controller.ts', data: createControllerTemplate() },
+    { route: '/commands/templates/index.ts',      data: createIndexTemplate() },
+    { route: '/commands/templates/interface.ts',  data: createInterfaceTemplate() },
+    { route: '/commands/templates/model.ts',      data: createModelTemplate() },
+    { route: '/commands/templates/procedure.ts',  data: createProcedureTemplate() },
+    { route: '/commands/templates/routes.ts',     data: createRoutesTemplate() },
+    // commands
     { route: '/commands/allDatabaseMysql.ts',     data: createAllDatabaseMysql() },
-    { route: '/commands/controllerMongo.ts',      data: createControllerMongo() },
-    { route: '/commands/controllerMySql.ts',      data: createControllerMySql() },
     { route: '/commands/crudMongo.ts',            data: createCrudMongo() },
     { route: '/commands/crudMysql.ts',            data: createCrudMysql() },
     { route: '/commands/modelMongo.ts',           data: createModelMongo() },
     { route: '/commands/modelMySql.ts',           data: createModelMySql() },
     { route: '/commands/procedure.ts',            data: createCrudProcedure() },
+    { route: '/commands/tableSql.ts',             data: createTableSql() },
 
     // config
     { route: '/config/database/mongoose.ts',      data: createMongooseConfig() },
@@ -156,6 +167,9 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     
     // services
     { route: '/services/index.ts',                data: createServer() },
+
+    // SQL Procedures
+    { route: '/SQL/.gitkeep',                     data: '' },
     
     // utilities
     { route: '/utilities/dateMethods.ts',         data: createDateMethods() },

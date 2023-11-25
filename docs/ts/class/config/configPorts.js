@@ -3,9 +3,9 @@ export const createConfigPorts = () => {
   const data = `import "dotenv/config";
 
 // PROTOCOLO DE CONEXION HTTP O HTTPS
-export const PROTOCOL = process.env.PROTOCOL || 'http';
-export const URL = process.env.URL || "://localhost:";
-export const PORT = process.env.PORT || 4500;
+export const PROTOCOL = process.env.PROTOCOL || 'http....';
+export const URL = process.env.URL || "://localhost:....";
+export const PORT = process.env.PORT || 4600;
 
 // BASES DE DATOS MYSQL
 export const DB_HOST = process.env.DB_HOST || "localhost";
@@ -26,7 +26,6 @@ export const API_KEY = process.env.API_KEY || "api_key";
 // SSL
 export const SSL_PRIVATE_KEY = process.env.SSL_PRIVATE_KEY || "ssl-private-key";
 export const SSL_CERTIFICATE = process.env.SSL_CERTIFICATE || "ssl-certificate-key";
-
 `;
 
   return data;
