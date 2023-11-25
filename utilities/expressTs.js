@@ -18,6 +18,7 @@ import {
   createEditorConfig, 
   createExampleEnv, 
   createFilesExcel, 
+  createFilesPdf, 
   createGitIgnore, 
   createIndex,
   createJWT,
@@ -122,7 +123,8 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     
     // helpers  
     { route: '/helpers/apiResponse.ts',           data: createApiResponse() },
-    { route: '/helpers/files.ts',                 data: createFilesExcel() },
+    { route: '/helpers/filesExcel.ts',            data: createFilesExcel() },
+    { route: '/helpers/filesPdf.ts',              data: createFilesPdf() },
     { route: '/helpers/jwt.ts',                   data: createJWT() },
     { route: '/helpers/logs.utilities.ts',        data: createLogs() },
     { route: '/helpers/missingData.ts',           data: createMissingData() },
