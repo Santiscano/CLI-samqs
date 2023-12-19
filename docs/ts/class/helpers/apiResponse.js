@@ -70,7 +70,7 @@ class ApiResponses {
    * @returns Objeto de respuesta con formato estándar para información incompleta.
    */
   static uncompleted( missings:string[] | {}[] | undefined ): Response {
-    return { error: true, message: 'INCOMPLETE_INFORMATION', missing };
+    return { error: true, message: 'INCOMPLETE_INFORMATION', missings };
   }
 }
 

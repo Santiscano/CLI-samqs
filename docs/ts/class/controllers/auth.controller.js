@@ -17,6 +17,8 @@ type MethodType = keyof typeof optionsMethodSign;
 class AuthController {
 
   static async signup(req: Request, res: Response) {
+    /* #swagger.tags = ['auth'] 
+      #swagger.description = 'Endpoint to sign in a specific user' */
     try {
       const { methodSign } = req.body;
 
@@ -40,6 +42,8 @@ class AuthController {
   }
 
   static async signin(req: Request, res: Response) {
+    /* #swagger.tags = ['auth'] 
+      #swagger.description = 'Endpoint to sign in a specific user' */
     try {
       res.json({msg: "pasaste la autorizacion"})
     } catch (error) {

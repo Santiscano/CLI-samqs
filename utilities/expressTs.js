@@ -7,14 +7,17 @@ import {
   createApiResponseInterface,
   createAuthContextInterface,
   createAuthController,
+  createAuthDocumentation,
   createAuthStrategy,
   createConfigPorts, 
-  createControllerTemplate, 
+  createControllerTemplate,
+  createTagsComponents,
   createCrudMongo,
   createCrudMysql,
   createCrudProcedure, 
   createDateMethods,
   createEditorConfig, 
+  createExampleDocumentation,
   createExampleEnv, 
   createFilesExcel, 
   createFilesPdf, 
@@ -47,7 +50,7 @@ import {
   createSqlCrud,
   createSqlInterface, 
   createStringMethods,
-  createSwagger, 
+  createSwaggerScript,
   createTableSql, 
   createTsConfig,
   createValidateToken,
@@ -92,7 +95,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
   // --------------------------ARCHIVOS DENTRO DE SRC--------------------------------//
   const src = path.join(fileProyectPath, '/src');
   // crear carpetas
-  const folders = ['/class', '/commands', '/commands/templates', '/config', '/config/database', '/controllers', '/documentation', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', '/SQL', 'utilities', 'utilities/PDF', 'utilities/PDF/upload' ];
+  const folders = ['/class', '/commands', '/commands/templates', '/config', '/config/database', '/controllers', '/documentation', '/documentation/components', '/documentation/res', '/helpers', '/interfaces', '/middlewares', '/models', '/routes', '/services', '/SQL', 'utilities', 'utilities/PDF', 'utilities/PDF/upload' ];
   folders.forEach(folder => {
     const folderPath = path.join( src, folder );
     fs.mkdirSync(folderPath);
@@ -130,7 +133,11 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     { route: '/controllers/auth.controller.ts',   data: createAuthController() },
 
     // documentation
-    { route: '/documentation/swagger.ts',         data: createSwagger() },
+    { route : '/documentation/components/auth',   data: createAuthDocumentation() },
+    { route : '/documentation/components/example',data: createExampleDocumentation() },
+    { route: '/documentation/createTagsComponents.ts', data: createTagsComponents() },
+    { route: '/documentation/swagger-output.json', data: '' },
+    { route: '/documentation/swaggerScript.ts',   data: createSwaggerScript(nameProyect) },
     
     // helpers  
     { route: '/helpers/apiResponse.ts',           data: createApiResponse() },

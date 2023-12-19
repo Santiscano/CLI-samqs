@@ -22,6 +22,9 @@ export * from './config/database/mysqlConfig.js';
 
 export * from './controllers/auth.controller.js';
 
+export * from './documentation/components/auth.js';
+export * from './documentation/components/example.js';
+export * from './documentation/createTagsComponents.js';
 export * from './documentation/swagger.js';
 
 export * from './helpers/apiResponse.js';
