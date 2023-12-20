@@ -10,13 +10,14 @@ import morgan from "morgan";
 import cors from "cors";
 import bodyParser from 'body-parser';
 import { Server as socketio } from 'socket.io';
+import swaggerUI from 'swagger-ui-express';
 
 import { PORT, URL, PROTOCOL, SSL_PRIVATE_KEY, SSL_CERTIFICATE } from '../config/configPorts';
 import { Protocol } from '../interfaces/server'
 import { ServerInterface } from '../interfaces/server';
 import { SocketEvents } from '../helpers/sockets';
 import routes from "../routes";
-import swagger from '../documentation/swagger';
+import swaggerDocJson from '../documentation/swagger-output.json'; 
 
 export class Server implements ServerInterface{
   private app = express(); // app es de express
@@ -61,6 +62,9 @@ export class Server implements ServerInterface{
     
     // rutas principales por versiones
     this.app.use("/api/v1", routes);
+
+    // documentation
+    this.app.use("/docs", swaggerUI.serve, swaggerUI.setup( swaggerDocJson ))
     
     // error ruta no existente
     this.app.use((
@@ -92,7 +96,6 @@ export class Server implements ServerInterface{
 
   serverOn() {
     this.server = this.createServer();
-    swagger.SwaggerDocumentation( this.app ) // documentacion
     this.middlewares();
     this.routes();
     // this.frontend();

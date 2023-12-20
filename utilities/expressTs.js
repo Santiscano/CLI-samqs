@@ -56,6 +56,7 @@ import {
   createValidateToken,
   createVerifyUserPassword,
   createDocumentationTemplates,
+  createReadmeMD,
 } from '../docs/ts/class/index.js';
 
 
@@ -81,6 +82,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     { route: '.example.env',  data: createExampleEnv() },
     { route: '.gitignore',    data: createGitIgnore() },
     { route: 'package.json',  data: createPackage( nameProyect, descriptionProyect ) },
+    { route: 'Readme.md',     data: createReadmeMD() },
     { route: 'tsconfig.json', data: createTsConfig() }
   ];
   files.forEach(( { route, data }) => {
@@ -135,8 +137,8 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     { route: '/controllers/auth.controller.ts',         data: createAuthController() },
 
     // documentation
-    { route : '/documentation/components/auth',         data: createAuthDocumentation() },
-    { route : '/documentation/components/example',      data: createExampleDocumentation() },
+    { route : '/documentation/components/auth.json',    data: createAuthDocumentation(nameProyect) },
+    { route : '/documentation/components/example.json', data: createExampleDocumentation() },
     { route: '/documentation/createTagsComponents.ts',  data: createTagsComponents() },
     { route: '/documentation/swagger-output.json',      data: '' },
     { route: '/documentation/swaggerScript.ts',         data: createSwaggerScript(nameProyect) },

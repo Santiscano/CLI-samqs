@@ -9,7 +9,7 @@ const schema = createTagsComponents();
 const doc = {
   info: {
     version: "0.0.1",
-    title: "Documentation ${name}",
+    title: "${name}",
     description: "Documentacion del aplicativo <b>${name}</b>",
   },
   host: "localhost:4500",

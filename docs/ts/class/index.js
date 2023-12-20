@@ -26,7 +26,7 @@ export * from './controllers/auth.controller.js';
 export * from './documentation/components/auth.js';
 export * from './documentation/components/example.js';
 export * from './documentation/createTagsComponents.js';
-export * from './documentation/swagger.js';
+export * from './documentation/swaggerScript.js';
 
 export * from './helpers/apiResponse.js';
 export * from './helpers/filesExcel.js';
@@ -65,4 +65,5 @@ export * from './exampleEnv.js';
 export * from './gitignore.js';
 export * from './indexServer.js';
 export * from './packageJson.js';
+export * from './Readme.js';
 export * from './tsconfig.js';

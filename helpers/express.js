@@ -51,7 +51,7 @@ const success = (nameProyectFormat) => {
   console.log('============================================================================================================================='.green);
   console.log('el proyecto se ha creado con exito, digita los siguientes comandos'.white.bold);
   console.log(`cd ${nameProyectFormat}`.blue);
-  console.log('npm install --save cors dotenv express fs-extra jsonwebtoken moment-timezone mongoose morgan multer mysql2 socket.io swagger-jsdoc swagger-ui-express'.blue);
+  console.log('npm install --save cors dotenv express fs-extra jsonwebtoken moment-timezone mongoose morgan multer mysql2 socket.io swagger-autogen swagger-jsdoc swagger-ui-express'.blue);
   console.log('npm install -D @types/cors @types/dotenv @types/express @types/fs-extra @types/jsonwebtoken @types/mongoose @types/morgan @types/multer @types/swagger-jsdoc @types/swagger-ui-express ts-node-dev typescript'.blue);
   console.log('============================================================================================================================='.green);
   console.log('============================================================================================================================='.green);

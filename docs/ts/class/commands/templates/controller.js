@@ -20,7 +20,7 @@ class \${tablePascal}Controller {
 
   // GET ALL ITEMS
   static async getAll\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'trae tod@s l@s \${tableName} segun parametros' */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'trae tod@s l@s \${tableCamel} segun parametros' */
     const page = parseInt(req.params.page) || 1;
     const limit = parseInt(req.params.limit) || 50;
     const offset = (page - 1) * limit || 0;
@@ -29,7 +29,7 @@ class \${tablePascal}Controller {
     
     try {
       const allData = await \${tablePascal}Model.getAll\${tablePascal}( \${tablePascal}Controller.table, offset, limit, orderBy, sort  );
-      /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+      /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
       return res.status(resStatus.success).json(ApiResponses.success(allData));
     } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
@@ -39,7 +39,7 @@ class \${tablePascal}Controller {
 
   // COUNT ALL ITEMS
   static async count\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'cuenta tod@s l@s \${tableName}' */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'cuenta tod@s l@s \${tableCamel}' */
     try {
       const count = await \${tablePascal}Model.count\${tablePascal}( \${tablePascal}Controller.table );
       return count
@@ -55,8 +55,8 @@ class \${tablePascal}Controller {
 
   // GET ITEM BY ID
   static async get\${tablePascal}ById(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'trae el/la \${tableName} segun id' */
-    /*  #swagger.parameters['id'] = { description: 'id de \${tableName} a buscar' } */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'trae el/la \${tableCamel} segun id' */
+    /*  #swagger.parameters['id'] = { description: 'id de \${tableCamel} a buscar' } */
     try {
       const dataById = await \${tablePascal}Model.get\${tablePascal}ById( \${tablePascal}Controller.table, \${tablePascal}Controller.pktable, req.params.id );
       return dataById.data
@@ -72,8 +72,8 @@ class \${tablePascal}Controller {
 
   // CREATE ITEM
   static async post\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'crea un nuevo \${tableName} segun el body' */
-    /*  #swagger.parameters['body'] = { in: 'body', description: 'datos para crear un@ \${tableName}', schema: { $ref: '#/definitions/\${tableName}' }} */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'crea un nuevo \${tableCamel} segun el body' */
+    /*  #swagger.parameters['body'] = { in: 'body', description: 'datos para crear un@ \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
     const { \${listColumnsWithOutId} } = req.body;
     const validate: Type\${tablePascal} = { \${listColumnsWithOutId} };
     const data: Type\${tablePascal} = { \${listColumnsWithOutId} };
@@ -87,7 +87,7 @@ class \${tablePascal}Controller {
       return postData.data
         ? res.status(resStatus.success).json( ApiResponses.success({ idData, ...data }, postData.message ))
         : res.status(resStatus.unCompleted).json( ApiResponses.errorMessage( postData.message ))
-        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
         /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/uncompleted' }} */
     } catch (error) {
@@ -98,8 +98,8 @@ class \${tablePascal}Controller {
 
   // CREATE BULK ITEMS
   static async bulk\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'crea uno o muchos \${tableName} segun el body' */
-    /*  #swagger.parameters['body'] = { in: 'body', description: 'datos para crear uno o muchos \${tableName}', schema: { $ref: '#/definitions/\${tableName}' }} */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'crea uno o muchos \${tableCamel} segun el body' */
+    /*  #swagger.parameters['body'] = { in: 'body', description: 'datos para crear uno o muchos \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
     const { bulkDataInsert } = req.body;
 
     try {
@@ -121,9 +121,9 @@ class \${tablePascal}Controller {
 
   // UPDATE ITEM
   static async put\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'actualiza toda la informacion de un \${tableName} segun body' */
-    /*  #swagger.parameters['id'] = { description: 'id de \${tableName} a modificar' } */
-    /*  #swagger.parameters['body'] = { in: 'body', description: 'todos los datos necesarios para modificar un@ \${tableName}', schema: { $ref: '#/definitions/\${tableName}' }} */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'actualiza toda la informacion de un \${tableCamel} segun body' */
+    /*  #swagger.parameters['id'] = { description: 'id de \${tableCamel} a modificar' } */
+    /*  #swagger.parameters['body'] = { in: 'body', description: 'todos los datos necesarios para modificar un@ \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
     const { \${listColumnsWithOutId} } = req.body;
     const id\${tableName} = req.params.id;
     const data: Type\${tablePascal} = { \${listColumnsWithOutId} };
@@ -136,7 +136,7 @@ class \${tablePascal}Controller {
       return putData.data
         ? res.status(resStatus.success).json(ApiResponses.success( putData.data, putData.message ))
         : res.status(resStatus.unCompleted).json(ApiResponses.errorMessage( putData.message ))
-        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
         /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
       } catch (error) {
@@ -147,9 +147,9 @@ class \${tablePascal}Controller {
 
   // UPDATE ITEM
   static async patch\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'actualiza la informacion de un \${tableName} segun lo que reciba en el body' */
-    /*  #swagger.parameters['id'] = { description: 'id de \${tableName} a modificar' } */
-    /*  #swagger.parameters['body'] = { in: 'body', description: 'todos los datos posibles para modificar un@ \${tableName}', schema: { $ref: '#/definitions/\${tableName}' }} */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'actualiza la informacion de un \${tableCamel} segun lo que reciba en el body' */
+    /*  #swagger.parameters['id'] = { description: 'id de \${tableCamel} a modificar' } */
+    /*  #swagger.parameters['body'] = { in: 'body', description: 'todos los datos posibles para modificar un@ \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
     const { \${listColumnsWithOutId} } = req.body;
     const id\${tableName} = req.params.id;
     const data = MissingData.notEmptyToObjet({ \${listColumnsWithOutId} });
@@ -162,7 +162,7 @@ class \${tablePascal}Controller {
       return patchData.data
         ? res.status(resStatus.success).json(ApiResponses.success( patchData.data, patchData.message ))
         : res.status(resStatus.unCompleted).json(ApiResponses.errorMessage( patchData.message ))
-        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
         /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
       } catch (error) {
@@ -173,11 +173,11 @@ class \${tablePascal}Controller {
 
   // DELETE ITEM
   static async delete\${tablePascal}(req: Request, res: Response) {
-    /* #swagger.tags = ['\${tableName}'] #swagger.description = 'elimina el/la \${tableName} con el id que llega por parametros' */
-    /*  #swagger.parameters['id'] = { description: 'id de \${tableName} a eliminar' } */
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'elimina el/la \${tableCamel} con el id que llega por parametros' */
+    /*  #swagger.parameters['id'] = { description: 'id de \${tableCamel} a eliminar' } */
     try {
       const dataById = await \${tablePascal}Model.delete\${tablePascal}( \${tablePascal}Controller.table, \${tablePascal}Controller.pktable, req.params.id );
-      /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+      /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
       return res.status(resStatus.success).json(ApiResponses.success( null, dataById.message ))
     } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
