@@ -1,51 +1,62 @@
 #!/usr/bin/env node
 
-import 'colors';
-import { program } from 'commander';
-import { expressOptions, inquirerMenu } from './helpers/inquirer.js'
+import "colors";
+import { createSpinner } from 'nanospinner';
 
-// Define la versión de tu aplicación
-program.version('1.1.1');
+import { expressOptions, inquirerMenu } from "./helpers/inquirer.js";
+
+// OTRAS LIBRERIAS INTERESANTES PARA DECORAR
+// https://www.npmjs.com/package/chalk
+// https://www.npmjs.com/package/chalk-animation
+// https://www.npmjs.com/package/figlet
+// https://www.npmjs.com/package/gradient-string
+// https://www.npmjs.com/package/nanospinner
 
 const main = async () => {
-    // Configura la opción --version
-    program.parse(process.argv);
+  
+  const spinner = createSpinner('validando desarrollo de maqueta');
 
-    // Si se proporciona la opción --version, commander mostrará la versión y finalizará la ejecución
-    if (program.version) {
-      return;
-    }
-    
-    console.clear();
+  console.clear();
 
-    let opt = await inquirerMenu();
+  let opt = await inquirerMenu();
 
-    switch (opt) {
-        case 'express':
-            expressOptions()
-        break;
+  switch (opt) {
+    case "express":
+      expressOptions();
+      break;
 
-        case 'nestjs':
-            console.log('aun no esta desarrollado para nestjs')
-        break;
+    case "nestjs":
+      spinner.start();
+      setTimeout(() => {
+        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para nestjs`});
+      }, 2000)
+      break;
 
-        case 'react vite':
-            console.log('aun no esta desarrollado para  react');
-        break;
+    case "react vite":
+      spinner.start();
+      setTimeout(() => {
+        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para react vite`});
+      }, 2000)
+      break;
 
-        case 'nextjs':
-            console.log('aun no esta desarrollado para  nextjs')
-        break;
+    case "nextjs":
+      spinner.start();
+      setTimeout(() => {
+        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para nextjs`});
+      }, 2000)
+      break;
 
-        case 'angular':
-            console.log('aun no esta desarrollado para  angular')
-        break;
-        
-        case 'cancelar':
-            console.log('cancelar')
-        break;
-        
-    }
-}
+    case "angular":
+      spinner.start();
+      setTimeout(() => {
+        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para angular`});
+      }, 2000)
+      break;
+
+    case "cancelar":
+      spinner.stop({ text: `😢😟 Vuelve pronto`});
+      break;
+  }
+};
 
 main();
