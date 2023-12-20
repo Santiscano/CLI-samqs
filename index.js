@@ -1,10 +1,21 @@
 #!/usr/bin/env node
 
 import 'colors';
-
+import { program } from 'commander';
 import { expressOptions, inquirerMenu } from './helpers/inquirer.js'
 
+// Define la versión de tu aplicación
+program.version('1.1.1');
+
 const main = async () => {
+    // Configura la opción --version
+    program.parse(process.argv);
+
+    // Si se proporciona la opción --version, commander mostrará la versión y finalizará la ejecución
+    if (program.version) {
+      return;
+    }
+    
     console.clear();
 
     let opt = await inquirerMenu();
