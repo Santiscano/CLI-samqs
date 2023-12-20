@@ -17,6 +17,8 @@ const doc = {
   definitions: {
     ...schema.components,
     ...schema.responseSuccess,
+    countSuccess    : { error: false, data: 3 },
+    bulkSuccess     : { error: false, message: "Datos Ingresados Con exito" },
     unsuccessfully  : { error: true, message: "SERVER_PROBLEM", typeError: "unkown" },
     errorMessage    : { error: true, message: "error"},
     unauthorized    : { error:true, message: 'YOU_DONT_HAVE_UNAUTHORIZED'},

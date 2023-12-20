@@ -45,8 +45,8 @@ class \${tablePascal}Controller {
       return count
         ? res.status(resStatus.success).json(ApiResponses.success( count, "cantidad recuperada" ))
         : res.status(resStatus.noContent).json(ApiResponses.errorMessage( "datos no encontrados" ))
-        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
-        /* #swagger.responses[417] = { description: 'noContent', schema: { $ref: '#/definitions/errorMessage' }} */
+        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/countSuccess' }} */
+        /* #swagger.responses[400] = { description: 'noContent', schema: { $ref: '#/definitions/errorMessage' }} */
     } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
       return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
@@ -63,8 +63,9 @@ class \${tablePascal}Controller {
         ? res.status(resStatus.success).json(ApiResponses.success( dataById.data, dataById.message ))
         : res.status(resStatus.noContent).json(ApiResponses.errorMessage( dataById.message! ))
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
-        /* #swagger.responses[417] = { description: 'noContent', schema: { $ref: '#/definitions/errorMessage' }} */
+        /* #swagger.responses[400] = { description: 'noContent', schema: { $ref: '#/definitions/errorMessage' }} */
     } catch (error) {
+      /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
       return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
     }
   };
@@ -87,8 +88,8 @@ class \${tablePascal}Controller {
         ? res.status(resStatus.success).json( ApiResponses.success({ idData, ...data }, postData.message ))
         : res.status(resStatus.unCompleted).json( ApiResponses.errorMessage( postData.message ))
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/uncompleted' }} */
-        /* #swagger.responses[417] = { description: 'noContent', schema: { $ref: '#/definitions/errorMessage' }} */
     } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
       return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
@@ -109,7 +110,8 @@ class \${tablePascal}Controller {
       return bulkData.data
         ? res.status(resStatus.success).json(ApiResponses.success(bulkData.data, bulkData.message))
         : res.status(resStatus.unCompleted).json(ApiResponses.errorMessage( bulkData.message ))
-        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/bulkSuccess' }} */
+        /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/uncompleted' }} */
       } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
@@ -135,6 +137,7 @@ class \${tablePascal}Controller {
         ? res.status(resStatus.success).json(ApiResponses.success( putData.data, putData.message ))
         : res.status(resStatus.unCompleted).json(ApiResponses.errorMessage( putData.message ))
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
       } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
@@ -160,6 +163,7 @@ class \${tablePascal}Controller {
         ? res.status(resStatus.success).json(ApiResponses.success( patchData.data, patchData.message ))
         : res.status(resStatus.unCompleted).json(ApiResponses.errorMessage( patchData.message ))
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableName}Res' }} */
+        /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
       } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */

@@ -2,6 +2,7 @@
 export * from './class/authStrategy.js';
 
 export * from './commands/templates/controller.js';
+export * from './commands/templates/documentation.js';
 export * from './commands/templates/index.js';
 export * from './commands/templates/interface.js';
 export * from './commands/templates/model.js';

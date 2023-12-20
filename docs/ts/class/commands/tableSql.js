@@ -7,7 +7,7 @@ import "dotenv/config";
 import { createProcedures } from "./procedure";
 import { connection } from "../config/database/mysql";
 import { RowDataPacket } from "mysql2";
-import { fileContentController, fileContentInterface, fileContentModel, fileContentRoutes } from './templates';
+import { fileContentController, fileContentDoc, fileContentDocRes, fileContentInterface, fileContentModel, fileContentRoutes } from './templates';
 
 
 // 2.2 - variable de ruta actual
@@ -23,6 +23,9 @@ export const createCrudSql = async ( tableName:string, tableNameCamel:string, ta
   const dataIntems = columns.map((property) => \`data.\${property.Field}\`).join(', '); // string con "data.nombre_columna" de todas las columnas
   const procedureParams = columns.map((property) => \`IN _\${property.Field} \${property.Type.toUpperCase()},\`).join("\\n    "); // parametros para procerude "IN _idcompanys INT"
   const valuesProcedure = columns.map((property) => \`_\${property.Field}\`).join(', '); // string con "_nombre_columna" de todas las columnas;
+
+  // array de objetos que se usara para documentacion como respuesta
+  const listAndTypeColumns = columns.map(({Field, Type}) => ({ [Field]: Type.replace(/\(.+?\)/, '') === 'varchar' ? 'string' : Type }));
 
   // propiedades sin id
   const interfaceWithoutId = columns
@@ -79,6 +82,20 @@ export const createCrudSql = async ( tableName:string, tableNameCamel:string, ta
   // 4- creamos la consulta sql - traer columnas
   createProcedures( tableName, currentDirectory, "../SQL", procedureParamsWithoutId, listColumnsWithOutId, valuesProcedureWithoutId, procedureParams, keyValuesProcedureWithoutId );
 
+  // ---------------- Create json documentation -------- //
+  const folderDoc = "../documentation/components";
+  const nameJsonDocumentation = \`\${tableNameCamel}.json\`;
+  const filePathDoc = path.join( currentDirectory, folderDoc, nameJsonDocumentation );
+  const contentDoc = fileContentDoc(listAndTypeColumns); // plantilla de escritura;
+  fs.writeFileSync( filePathDoc, contentDoc );
+  console.log(\`\${nameJsonDocumentation} Creado\`);
+
+  const folderDocRes = "../documentation/res";
+  const fullnameDocRes = \`\${tableNameCamel}Res.json\`;
+  const filePathDocRes = path.join( currentDirectory, folderDocRes, fullnameDocRes );
+  const contentDocRes = fileContentDocRes(listAndTypeColumns); // plantilla de escritura
+  fs.writeFileSync( filePathDocRes, contentDocRes );
+  console.log(\`\${fullnameDocRes} Creado\`);
 };
 `;
 

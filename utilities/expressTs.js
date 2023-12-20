@@ -55,6 +55,7 @@ import {
   createTsConfig,
   createValidateToken,
   createVerifyUserPassword,
+  createDocumentationTemplates,
 } from '../docs/ts/class/index.js';
 
 
@@ -105,88 +106,89 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
   // crear archivos
   const filesSrc = [
     //* class
-    { route: './class/auth.strategy.ts',    data: createAuthStrategy() },
+    { route: './class/auth.strategy.ts',                data: createAuthStrategy() },
 
     // commands/templates
-    { route: '/commands/templates/controller.ts', data: createControllerTemplate() },
-    { route: '/commands/templates/index.ts',      data: createIndexTemplate() },
-    { route: '/commands/templates/interface.ts',  data: createInterfaceTemplate() },
-    { route: '/commands/templates/model.ts',      data: createModelTemplate() },
-    { route: '/commands/templates/procedure.ts',  data: createProcedureTemplate() },
-    { route: '/commands/templates/routes.ts',     data: createRoutesTemplate() },
+    { route: '/commands/templates/controller.ts',       data: createControllerTemplate() },
+    { route: '/commands/templates/documentation.ts',    data: createDocumentationTemplates() },
+    { route: '/commands/templates/index.ts',            data: createIndexTemplate() },
+    { route: '/commands/templates/interface.ts',        data: createInterfaceTemplate() },
+    { route: '/commands/templates/model.ts',            data: createModelTemplate() },
+    { route: '/commands/templates/procedure.ts',        data: createProcedureTemplate() },
+    { route: '/commands/templates/routes.ts',           data: createRoutesTemplate() },
     // commands
-    { route: '/commands/allDatabaseMysql.ts',     data: createAllDatabaseMysql() },
-    { route: '/commands/crudMongo.ts',            data: createCrudMongo() },
-    { route: '/commands/crudMysql.ts',            data: createCrudMysql() },
-    { route: '/commands/modelMongo.ts',           data: createModelMongo() },
-    { route: '/commands/modelMySql.ts',           data: createModelMySql() },
-    { route: '/commands/procedure.ts',            data: createCrudProcedure() },
-    { route: '/commands/tableSql.ts',             data: createTableSql() },
+    { route: '/commands/allDatabaseMysql.ts',           data: createAllDatabaseMysql() },
+    { route: '/commands/crudMongo.ts',                  data: createCrudMongo() },
+    { route: '/commands/crudMysql.ts',                  data: createCrudMysql() },
+    { route: '/commands/modelMongo.ts',                 data: createModelMongo() },
+    { route: '/commands/modelMySql.ts',                 data: createModelMySql() },
+    { route: '/commands/procedure.ts',                  data: createCrudProcedure() },
+    { route: '/commands/tableSql.ts',                   data: createTableSql() },
 
     // config
-    { route: '/config/database/mongoose.ts',      data: createMongooseConfig() },
-    { route: '/config/database/mysql.ts',         data: createMysqlConfig() },
-    { route: '/config/configPorts.ts',            data: createConfigPorts() },
+    { route: '/config/database/mongoose.ts',            data: createMongooseConfig() },
+    { route: '/config/database/mysql.ts',               data: createMysqlConfig() },
+    { route: '/config/configPorts.ts',                  data: createConfigPorts() },
     
     //? controllers - void
     // { route: '/controllers/.gitkeep',             data: '' },
-    { route: '/controllers/auth.controller.ts',   data: createAuthController() },
+    { route: '/controllers/auth.controller.ts',         data: createAuthController() },
 
     // documentation
-    { route : '/documentation/components/auth',   data: createAuthDocumentation() },
-    { route : '/documentation/components/example',data: createExampleDocumentation() },
-    { route: '/documentation/createTagsComponents.ts', data: createTagsComponents() },
-    { route: '/documentation/swagger-output.json', data: '' },
-    { route: '/documentation/swaggerScript.ts',   data: createSwaggerScript(nameProyect) },
+    { route : '/documentation/components/auth',         data: createAuthDocumentation() },
+    { route : '/documentation/components/example',      data: createExampleDocumentation() },
+    { route: '/documentation/createTagsComponents.ts',  data: createTagsComponents() },
+    { route: '/documentation/swagger-output.json',      data: '' },
+    { route: '/documentation/swaggerScript.ts',         data: createSwaggerScript(nameProyect) },
     
     // helpers  
-    { route: '/helpers/apiResponse.ts',           data: createApiResponse() },
-    { route: '/helpers/filesExcel.ts',            data: createFilesExcel() },
-    { route: '/helpers/filesPdf.ts',              data: createFilesPdf() },
-    { route: '/helpers/jwt.ts',                   data: createJWT() },
-    { route: '/helpers/logs.utilities.ts',        data: createLogs() },
-    { route: '/helpers/missingData.ts',           data: createMissingData() },
-    { route: '/helpers/nodeMailer.ts',            data: createNodeMailer() },
-    { route: '/helpers/resStatus.ts',             data: createResStatus() },
-    { route: '/helpers/sendFileTemp.ts',          data: createSendFileTemp() },
-    { route: '/helpers/sockets.ts',               data: createSocket() },
-    { route: '/helpers/sqlCrud.ts',               data: createSqlCrud() },
+    { route: '/helpers/apiResponse.ts',                 data: createApiResponse() },
+    { route: '/helpers/filesExcel.ts',                  data: createFilesExcel() },
+    { route: '/helpers/filesPdf.ts',                    data: createFilesPdf() },
+    { route: '/helpers/jwt.ts',                         data: createJWT() },
+    { route: '/helpers/logs.utilities.ts',              data: createLogs() },
+    { route: '/helpers/missingData.ts',                 data: createMissingData() },
+    { route: '/helpers/nodeMailer.ts',                  data: createNodeMailer() },
+    { route: '/helpers/resStatus.ts',                   data: createResStatus() },
+    { route: '/helpers/sendFileTemp.ts',                data: createSendFileTemp() },
+    { route: '/helpers/sockets.ts',                     data: createSocket() },
+    { route: '/helpers/sqlCrud.ts',                     data: createSqlCrud() },
     
     // interfaces
-    { route: '/interfaces/apiResponse.d.ts',      data: createApiResponseInterface() },
-    { route: '/interfaces/authContext.d.ts',      data: createAuthContextInterface() },
-    { route: '/interfaces/logs.d.ts',             data: createLogsInterface() },
-    { route: '/interfaces/server.d.ts',           data: createServerInterface() },
-    { route: '/interfaces/sql2.d.ts',             data: createSqlInterface() },
+    { route: '/interfaces/apiResponse.d.ts',            data: createApiResponseInterface() },
+    { route: '/interfaces/authContext.d.ts',            data: createAuthContextInterface() },
+    { route: '/interfaces/logs.d.ts',                   data: createLogsInterface() },
+    { route: '/interfaces/server.d.ts',                 data: createServerInterface() },
+    { route: '/interfaces/sql2.d.ts',                   data: createSqlInterface() },
     
     //! middlewares
-    { route: '/middlewares/apiKey.ts' ,           data: createApiKey() },
-    { route: '/middlewares/token.ts' ,            data: createValidateToken() },
-    { route: '/middlewares/verifyUserPassword.ts',data: createVerifyUserPassword() },
+    { route: '/middlewares/apiKey.ts' ,                 data: createApiKey() },
+    { route: '/middlewares/token.ts' ,                  data: createValidateToken() },
+    { route: '/middlewares/verifyUserPassword.ts',      data: createVerifyUserPassword() },
     
     //? models - void
-    { route: '/models/.gitkeep',                  data: '' },
+    { route: '/models/.gitkeep',                        data: '' },
     
     // routes
-    { route: '/routes/auth.routes.ts',            data: createRouteAuth() },
-    { route: '/routes/example.routes.ts',         data: createRouteExample() },
-    { route: 'routes/index.ts',                   data: createRoutes() },
+    { route: '/routes/auth.routes.ts',                  data: createRouteAuth() },
+    { route: '/routes/example.routes.ts',               data: createRouteExample() },
+    { route: 'routes/index.ts',                         data: createRoutes() },
     
     // services
-    { route: '/services/index.ts',                data: createServer() },
+    { route: '/services/index.ts',                      data: createServer() },
 
     // SQL Procedures
-    { route: '/SQL/.gitkeep',                     data: '' },
+    { route: '/SQL/.gitkeep',                           data: '' },
     
     // utilities
-    { route: '/utilities/dateMethods.ts',         data: createDateMethods() },
-    { route: '/utilities/numbersMethods.ts',      data: createNumberMethods() },
-    { route: '/utilities/stringMethods.ts',       data: createStringMethods() },
+    { route: '/utilities/dateMethods.ts',               data: createDateMethods() },
+    { route: '/utilities/numbersMethods.ts',            data: createNumberMethods() },
+    { route: '/utilities/stringMethods.ts',             data: createStringMethods() },
     //! utilities/PDF
     //! utilities/PDF/upload
 
     // index
-    { route: 'index.ts',                          data: createIndex() },
+    { route: 'index.ts',                                data: createIndex() },
   ];
   filesSrc.forEach(( { route, data } ) => {
     let fullRoute = path.join(src, route);
