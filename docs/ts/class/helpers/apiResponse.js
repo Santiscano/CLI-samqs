@@ -2,6 +2,7 @@
 export const createApiResponse = () => {
   const data = `import Data from "../interfaces/sql2";
 import { Response } from "../interfaces/apiResponse";
+import Logs from "../middlewares/logs";
 
 /**
  * Clase que proporciona métodos estáticos para generar respuestas comunes de la API.
@@ -34,7 +35,7 @@ class ApiResponses {
    */
   static unsuccessfully( error: unknown ): Response {
     console.log(error);
-    // agregar un errorLogger que cree los logs de error
+    Logs.errorLogger(error);
     return { error: true, message: 'SERVER_PROBLEM', typeError: error };
   }
 

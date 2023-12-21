@@ -14,6 +14,7 @@ import { Server as socketio } from 'socket.io';
 import swaggerUI from 'swagger-ui-express';
 
 import { PORT, URL, PROTOCOL, SSL_PRIVATE_KEY, SSL_CERTIFICATE } from '../config/configPorts';
+import Logs from '../middlewares/logs';
 import { Protocol } from '../interfaces/server'
 import { ServerInterface } from '../interfaces/server';
 import { SocketEvents } from '../helpers/sockets';
@@ -54,6 +55,7 @@ export class Server implements ServerInterface{
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.use(express.json());
+    this.app.use((req:Request, res:Response, next: NextFunction) => Logs.customLogger(req, res, next, "6m"))
     this.app.use(bodyParser.urlencoded({ limit: 'Infinity', extended: true }));
     this.app.use(bodyParser.json({ limit: 'Infinity' }));
   }
