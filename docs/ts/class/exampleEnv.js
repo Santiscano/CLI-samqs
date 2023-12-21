@@ -24,6 +24,10 @@ SECRET_KEY = "visita y crea en: https://joaneeet7.github.io/online-tools/sha256.
 EXPIRE_TOKEN = "24h" || "1d" || 60 * 60 * 24 
 API_KEY = 283749860296492735462875694752698
 
+# NODEMAILER
+MAIL_PORT = 465
+MAIL_USER = "santiscano@gmail.com"
+MAIL_PASSWORD = "ljdkwjndoiwej32ionw"
 
 # SSL
 SSL_PRIVATE_KEY = "SSL_PRIVATE_KEY"

@@ -9,6 +9,7 @@ import {
   createAuthController,
   createAuthDocumentation,
   createAuthStrategy,
+  createBufferMethods,
   createConfigPorts, 
   createControllerTemplate,
   createTagsComponents,
@@ -20,7 +21,7 @@ import {
   createExampleDocumentation,
   createExampleEnv, 
   createFilesExcel, 
-  createFilesPdf, 
+  createFiles, 
   createGitIgnore, 
   createIndex,
   createIndexTemplate,
@@ -137,16 +138,17 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     { route: '/controllers/auth.controller.ts',         data: createAuthController() },
 
     // documentation
-    { route : '/documentation/components/auth.json',    data: createAuthDocumentation(nameProyect) },
-    { route : '/documentation/components/example.json', data: createExampleDocumentation() },
+    { route: '/documentation/components/auth.json',     data: createAuthDocumentation(nameProyect) },
+    { route: '/documentation/components/example.json',  data: createExampleDocumentation() },
     { route: '/documentation/createTagsComponents.ts',  data: createTagsComponents() },
     { route: '/documentation/swagger-output.json',      data: '' },
     { route: '/documentation/swaggerScript.ts',         data: createSwaggerScript(nameProyect) },
     
     // helpers  
     { route: '/helpers/apiResponse.ts',                 data: createApiResponse() },
+    { route: '/helpers/bufferMethods.ts',               data: createBufferMethods() },
+    { route: '/helpers/files.ts',                       data: createFiles() },
     { route: '/helpers/filesExcel.ts',                  data: createFilesExcel() },
-    { route: '/helpers/filesPdf.ts',                    data: createFilesPdf() },
     { route: '/helpers/jwt.ts',                         data: createJWT() },
     { route: '/helpers/logs.utilities.ts',              data: createLogs() },
     { route: '/helpers/missingData.ts',                 data: createMissingData() },

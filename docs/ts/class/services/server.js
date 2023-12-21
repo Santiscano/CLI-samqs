@@ -7,6 +7,7 @@ import path from "path";
 
 import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
+import multer from 'multer';
 import cors from "cors";
 import bodyParser from 'body-parser';
 import { Server as socketio } from 'socket.io';
@@ -28,6 +29,7 @@ export class Server implements ServerInterface{
     undefined;
   private protocol = PROTOCOL;
   private sockets: any;
+  private upload = multer({ storage: multer.memoryStorage() })
 
   constructor(){}
 
@@ -64,7 +66,11 @@ export class Server implements ServerInterface{
     this.app.use("/api/v1", routes);
 
     // documentation
-    this.app.use("/docs", swaggerUI.serve, swaggerUI.setup( swaggerDocJson ))
+    this.app.use("/docs", swaggerUI.serve, swaggerUI.setup( swaggerDocJson ));
+    this.app.use("/docs.json", (req:Request, res: Response) => {
+      res.setHeader("Content-Type", "application/json");
+      return res.status(200).send(swaggerDocJson);
+    });
     
     // error ruta no existente
     this.app.use((
