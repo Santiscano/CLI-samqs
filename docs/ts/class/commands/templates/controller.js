@@ -99,12 +99,12 @@ class \${tablePascal}Controller {
   // CREATE BULK ITEMS
   static async bulk\${tablePascal}(req: Request, res: Response) {
     /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'crea uno o muchos \${tableCamel} segun el body' */
-    /*  #swagger.parameters['body'] = { in: 'body', description: 'datos para crear uno o muchos \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
+    /* #swagger.parameters['body'] = { in: 'body', description: 'datos para crear uno o muchos \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
     const { bulkDataInsert } = req.body;
 
     try {
       const missing = MissingData.missingDataBulk( bulkDataInsert );
-      if(missing.error) return res.status(resStatus.unCompleted).json(ApiResponses.uncompleted( missing.missing ))
+      if(missing.error) return res.status(resStatus.unCompleted).json(ApiResponses.uncompleted( missing.missing ));
 
       const bulkData = await \${tablePascal}Model.bulk\${tablePascal}( \${tablePascal}Controller.table, bulkDataInsert );
       return bulkData.data
@@ -113,10 +113,34 @@ class \${tablePascal}Controller {
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/bulkSuccess' }} */
         /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/uncompleted' }} */
-      } catch (error) {
+    }  catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
       return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
     }
+  }
+
+  // Insert or Update bulk
+  static async insertOrUpdateBulk\${tablePascal}(req: Request, res: Response) {
+    /* #swagger.tags = ['\${tableCamel}'] #swagger.description = 'crea uno o muchos \${tableCamel} segun el body' */
+    /* #swagger.parameters['body'] = { in: 'body', description: 'datos para crear o actualizar uno o muchos \${tableCamel}', schema: { $ref: '#/definitions/\${tableCamel}' }} */
+    const { bulkDataInsert, excludeFields } = req.body;
+
+    try {
+      const missing = MissingData.missingDataBulk( bulkDataInsert );
+      if(missing.error) return res.status(resStatus.unCompleted).json(ApiResponses.uncompleted( missing.missing ));
+      
+      const bulkData = await \${tablePascal}Model.insertOrUpdateBulk\${tablePascal}( \${tablePascal}Controller.table, bulkDataInsert, excludeFields );
+      return bulkData.data
+        ? res.status(resStatus.success).json(ApiResponses.success(bulkData.data, bulkData.message))
+        : res.status(resStatus.unCompleted).json(ApiResponses.errorMessage( bulkData.message ))
+        /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/bulkSuccess' }} */
+        /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
+        /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/uncompleted' }} */
+    } catch (error) {
+      /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
+      return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
+    }
+
   }
 
   // UPDATE ITEM
@@ -139,7 +163,7 @@ class \${tablePascal}Controller {
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
         /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
-      } catch (error) {
+    } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
       return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
     }
@@ -165,7 +189,7 @@ class \${tablePascal}Controller {
         /* #swagger.responses[200] = { description: 'Response success', schema: { $ref: '#/definitions/\${tableCamel}Res' }} */
         /* #swagger.responses[400] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
         /* #swagger.responses[422] = { description: 'UnCompleted', schema: { $ref: '#/definitions/errorMessage' }} */
-      } catch (error) {
+    } catch (error) {
       /* #swagger.responses[500] = { description: 'Error server', schema: { $ref: '#/definitions/unsuccessfully' }} */
       return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully( error ));
     }

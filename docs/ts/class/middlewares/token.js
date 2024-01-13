@@ -23,11 +23,11 @@ class ValidateToken {
       const token = req.headers.authorization?.split(" ")[1];
       const verify = JWT.verifyToken(token);
       if(verify.name === "JsonWebTokenError"){
-        return res.status(resStatus.unauthorized).json(ApiResponses.unauthorized())
+        return res.status(resStatus.unauthorized).json(ApiResponses.unauthorized());
       }
       return next();
     } catch (error) {
-      return res.status(resStatus.serverError).json(ApiResponses.serverError())
+      return res.status(resStatus.serverError).json(ApiResponses.unsuccessfully(error));
     }
   }
 }

@@ -11,6 +11,7 @@ route.get("/:id", \${tablePascal}Controller.get\${tablePascal}ById );
 
 route.post("/create", \${tablePascal}Controller.post\${tablePascal} );
 route.post("/bulk", \${tablePascal}Controller.bulk\${tablePascal} );
+route.post("/inserOrUpdateBulk", \${tablePascal}Controller.insertOrUpdateBulk\${tablePascal} );
 
 route.put("/:id", \${tablePascal}Controller.put\${tablePascal} );
 route.patch("/:id", \${tablePascal}Controller.patch\${tablePascal} );

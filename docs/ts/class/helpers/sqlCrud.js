@@ -90,7 +90,30 @@ class SqlCrud {
     const keys = columns.join(', ');
 
     const valuesArray = dataToInsert.map( data => Object.values( data )) 
-    await connection.query( \`INSERT INTO \${tableName} (\${keys}) VALUES ?\`, [ valuesArray ] );
+    return await connection.query( \`INSERT INTO \${tableName} (\${keys}) VALUES ?\`, [ valuesArray ] );
+  };
+
+
+  /**
+   * Inserta múltiples registros en una tabla de la base de datos si existe lo actualiza y es posible limitar que columnas actualizar.
+   * @param {string} tableName - Nombre de la tabla en la que se realizará la inserción.
+   * @param {Array<object>} dataToInsert - Array de objetos representando los datos a ser insertados o actualizados.
+   * @param {Array<string>} excludeFields - lista de columnas que no se actualizaran en la parte de la sentencia "ON DUPLICATE KEY UPDATE"
+   * @returns {Promise<void>} - Promesa que se resuelve una vez completada la inserción o actualización.
+   */
+  static async insertOrUpdateBulk(tableName: string, dataToInsert: Record<string, any>[], excludeFields: string[] = []): Promise<void> {
+    console.log( 'lenght data: ', dataToInsert.length );
+    const columns = Object.keys(dataToInsert[0]);
+    const keys = columns.join(', ');
+
+    const valuesArray = dataToInsert.map(data => Object.values(data));
+    const updateSet = columns
+      .filter(column => !excludeFields.includes(column)) // Excluir las claves que no se actualizaran
+      .map(column => \`\${column} = VALUES(\${column})\`)
+      .join(', '); // Generar la parte SET para la cláusula ON DUPLICATE KEY UPDATE 341464
+  
+    const query = \`INSERT INTO \${tableName} (\${keys}) VALUES ? ON DUPLICATE KEY UPDATE \${updateSet}\`;
+    return await connection.query(query, [valuesArray]);
   };
 
 

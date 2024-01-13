@@ -34,6 +34,12 @@ class \${tablePascal}Model {
     return { message: "Datos ingresados correctamente", data: res };
   };
 
+  static async insertOrUpdateBulk\${tablePascal}(table:string, bulkDataIsert: Record<string, any>[] , excludeFields: string[] = [] ) {
+    const res: SQLResponse = await SqlCrud.insertOrUpdateBulk( table, bulkDataIsert, excludeFields );
+
+    return { message: "Datos ingresados y actualizados correctamente", data: res };
+  }
+
   static async put\${tablePascal}( table:string, attribute:string, data:{}, idcompanys: string ): Promise<{ message: string; data?: SQLResponse }> {
     const res: SQLResponse = await SqlCrud.updateRow( table, attribute, idcompanys, data );
 
