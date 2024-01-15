@@ -150,7 +150,6 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     { route: '/helpers/files.ts',                       data: createFiles() },
     { route: '/helpers/filesExcel.ts',                  data: createFilesExcel() },
     { route: '/helpers/jwt.ts',                         data: createJWT() },
-    { route: '/helpers/logs.utilities.ts',              data: createLogs() },
     { route: '/helpers/missingData.ts',                 data: createMissingData() },
     { route: '/helpers/nodeMailer.ts',                  data: createNodeMailer() },
     { route: '/helpers/resStatus.ts',                   data: createResStatus() },
@@ -167,6 +166,7 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
     
     //! middlewares
     { route: '/middlewares/apiKey.ts' ,                 data: createApiKey() },
+    { route: '/middlewares/logs.ts',                    data: createLogs() },
     { route: '/middlewares/token.ts' ,                  data: createValidateToken() },
     { route: '/middlewares/verifyUserPassword.ts',      data: createVerifyUserPassword() },
     

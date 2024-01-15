@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import "colors";
-import { createSpinner } from 'nanospinner';
+import { Command } from "commander";
 
-import { expressOptions, inquirerMenu } from "./helpers/inquirer.js";
+import { newProyect } from './actions/index.js';
 
 // OTRAS LIBRERIAS INTERESANTES PARA DECORAR
 // https://www.npmjs.com/package/chalk
@@ -12,51 +12,67 @@ import { expressOptions, inquirerMenu } from "./helpers/inquirer.js";
 // https://www.npmjs.com/package/gradient-string
 // https://www.npmjs.com/package/nanospinner
 
-const main = async () => {
+const version = "1.3.3"
+const program = new Command();
+
+program // crear nuevo proyecto
+  .command('new <schematic>')
+  .alias('n')
+  .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, fastify y nestjs')
+  .version(version)
+  // .action( () => console.log('todo melo') )
+  .action( (schema) => newProyect(schema) )
+
+
+
+program // generar un recurso - modulo completo o partes de el
+  .command('generate <schematic> [resourse]')
+  .alias('g')
+  .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, fastify y nestjs')
+  .version(version)
+  .option('-res, --resourse', 'crea un modulo completo con archivos route, controller, model, interface')
+  .option('-ressql, --resourse sql', 'crea un modulo completo con archivos route, controller, model, interface apartir de una tabla sql')
+  .option('-resmongo, --resourse mongo', 'crea un modulo completo con archivos route, controller, model, interface apartir de una entidad de mongo')
+  .option('-r, --route', 'crea un archivo route')
+  .option('-i, --interface', 'crea un archivo de definicion de tipos')
+  .option('-c, --controller', 'crea un controlador')
+  .option('-mo, --model', 'crea un modelo')
+  .option('-mid, --middleware', 'crea un middleware')
   
-  const spinner = createSpinner('validando desarrollo de maqueta');
-
-  console.clear();
-
-  let opt = await inquirerMenu();
-
-  switch (opt) {
-    case "express":
-      expressOptions();
+  .action((schema, table, resourse, command) => {
+    switch (resourse.resourse) {
+      case command.parent.args.includes('-res') || command.parent.args.includes('--resourse'):
+        console.log('entramos al recurso --resourse')
       break;
-
-    case "nestjs":
-      spinner.start();
-      setTimeout(() => {
-        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para nestjs`});
-      }, 2000)
+      case command.parent.args.includes('-ressql') || command.parent.args.includes('--resourse sql'):
+        console.log('entramos al recurso --resourse sql')
       break;
-
-    case "react vite":
-      spinner.start();
-      setTimeout(() => {
-        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para react vite`});
-      }, 2000)
+      case command.parent.args.includes('-resmongo') || command.parent.args.includes('--resourse mongo'):
+        console.log('entramos al recurso --resourse mongo')
       break;
-
-    case "nextjs":
-      spinner.start();
-      setTimeout(() => {
-        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para nextjs`});
-      }, 2000)
+      case command.parent.args.includes('-r') || command.parent.args.includes('--route'):
+        console.log('entramos al recurso --route')
       break;
-
-    case "angular":
-      spinner.start();
-      setTimeout(() => {
-        spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para angular`});
-      }, 2000)
+      case command.parent.args.includes('-i') || command.parent.args.includes('--interface'):
+        console.log('entramos al recurso --interface')
       break;
-
-    case "cancelar":
-      spinner.stop({ text: `😢😟 Vuelve pronto`});
+      case command.parent.args.includes('-c') || command.parent.args.includes('--controller'):
+        console.log('entramos al recurso --controller')
       break;
-  }
-};
+      case command.parent.args.includes('-mo') || command.parent.args.includes('--model'):
+        console.log('entramos al recurso --model')
+      break;
+      case command.parent.args.includes('-mid') || command.parent.args.includes('--middleware'):
+        console.log('entramos al recurso --middleware')
+      break;
+      default:
+        break;
+    }
+    console.log('schema',schema);
+    console.log('table',table);
+    console.log('resourse',resourse);
+    console.log('args',command.parent.args)
+    console.log('path',command.parent._scriptPath)
+  })
 
-main();
+program.parse();

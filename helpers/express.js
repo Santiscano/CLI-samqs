@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { expressTsClass } from '../utilities/expressTs.js';
 import { createSpinner } from 'nanospinner';
+import { installingPackage } from './packageInstall.js';
 
 export const express = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
     // console.clear();
@@ -39,7 +40,8 @@ export const express = async ( tool, paradigm, nameProyect, descriptionProyect )
 
         case 'typescript-class':
           const isSuccess = expressTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
-          isSuccess && success(nameProyectFormat);
+          const installing = installingPackage(nameProyectFormat);
+          (isSuccess && installing) && success(nameProyectFormat);
           spinner.success({text: "✅ Proyecto Creado con exito ✅"})
         break;
         case 'typescript-func':
