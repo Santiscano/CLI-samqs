@@ -16,7 +16,8 @@
   "dependencies": {
     "colors": "^1.4.0",
     "commander": "^11.1.0",
-    "inquirer": "^9.2.11"
+    "inquirer": "^9.2.11",
+    "nanospinner": "^1.1.0"
   },
   "repository": {
     "type": "git",

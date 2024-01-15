@@ -3,7 +3,7 @@ import { createSpinner } from 'nanospinner';
 import { express } from '../helpers/express.js';
 import { expressOptions, inquirerMenu } from '../helpers/inquirer.js';
 
-export const newProyect = async ( nameProyect ) => {
+export const newProyect = async ( nameProyect, scriptPath ) => {
   
   const spinner = createSpinner('validando desarrollo de maqueta');
 
@@ -14,7 +14,7 @@ export const newProyect = async ( nameProyect ) => {
   switch (optionTech) {
     case "express":
       let { tool, paradigm, descriptionProyect } = await expressOptions();
-      await express(tool, paradigm, nameProyect, descriptionProyect );
+      await express(tool, paradigm, nameProyect, descriptionProyect, scriptPath );
     break;
 
     case "fastify":

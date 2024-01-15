@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import path from 'path';
 import "colors";
 import { Command } from "commander";
 
@@ -21,7 +22,10 @@ program // crear nuevo proyecto
   .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, fastify y nestjs')
   .version(version)
   // .action( () => console.log('todo melo') )
-  .action( (schema) => newProyect(schema) )
+  .action( (schema, resourse, command) => {
+    const pathFather = path.dirname(command.parent._scriptPath);
+    newProyect(schema, pathFather)
+  })
 
 
 
