@@ -56,7 +56,7 @@ export const express = async ( tool, paradigm, nameProyect, descriptionProyect )
 };
 
 export const expressResourse = async ( tool, paradigm, nameProyect ) => {
-  const spinner = createSpinner('creando recurso').start();
+  const spinner = createSpinner('creando recurso \n').start();
 
   // 1- preconfiguraciones
   const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
@@ -66,7 +66,7 @@ export const expressResourse = async ( tool, paradigm, nameProyect ) => {
   const toolParadigm = tool + "-" + paradigm;
   switch (toolParadigm) {
     case 'typescript-class':
-      expressTsClassResourse( fileProyectPath, nameProyectFormat );
+      expressTsClassResourse( currentDirectory, nameProyectFormat );
       spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
     break;
   

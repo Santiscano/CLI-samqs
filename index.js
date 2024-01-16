@@ -51,25 +51,25 @@ program // generar un recurso - modulo completo o partes de el
         newResourse(schema);
       break;
       case command.parent.args.includes('-ressql') || command.parent.args.includes('--resourse sql'):
-        console.log('entramos al recurso --resourse sql')
+        console.log('😓😢 aun no hemos creado este recurso --resourse sql')
       break;
       case command.parent.args.includes('-resmongo') || command.parent.args.includes('--resourse mongo'):
-        console.log('entramos al recurso --resourse mongo')
+        console.log('😓😢 aun no hemos creado este recurso --resourse mongo')
       break;
       case command.parent.args.includes('-r') || command.parent.args.includes('--route'):
-        console.log('entramos al recurso --route')
+        console.log('😓😢 aun no hemos creado este recurso --route')
       break;
       case command.parent.args.includes('-i') || command.parent.args.includes('--interface'):
-        console.log('entramos al recurso --interface')
+        console.log('😓😢 aun no hemos creado este recurso --interface')
       break;
       case command.parent.args.includes('-c') || command.parent.args.includes('--controller'):
-        console.log('entramos al recurso --controller')
+        console.log('😓😢 aun no hemos creado este recurso --controller')
       break;
       case command.parent.args.includes('-mo') || command.parent.args.includes('--model'):
-        console.log('entramos al recurso --model')
+        console.log('😓😢 aun no hemos creado este recurso --model')
       break;
       case command.parent.args.includes('-mid') || command.parent.args.includes('--middleware'):
-        console.log('entramos al recurso --middleware')
+        console.log('😓😢 aun no hemos creado este recurso --middleware')
       break;
       default:
         break;

@@ -216,6 +216,7 @@ export const expressTsFn = () => {};
 
 export const expressTsClassResourse = async (fileProyectPath, name ) => {
   const src = path.join(fileProyectPath, '/src');
+  console.log('src: ', src);
   const nameCamel = "";
   const namePascal = "";
 
