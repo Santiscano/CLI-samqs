@@ -59,6 +59,10 @@ import {
   createDocumentationTemplates,
   createReadmeMD,
 } from '../docs/ts/class/index.js';
+import { fileContentRoutesResourse } from '../docs/ts/class/commands/templates/resourse.routes.js';
+import { fileContentInterfaceResourse } from '../docs/ts/class/commands/templates/resourse.d.js';
+import { fileControllerResourse } from '../docs/ts/class/commands/templates/resourse.controller.js';
+import { fileContentModelResourse } from '../docs/ts/class/commands/templates/resourse.model.js';
 
 
 
@@ -208,3 +212,21 @@ export const expressTsClass = async ( fileProyectPath, nameProyect, descriptionP
  * funcion express con configuracion en funciones
  */
 export const expressTsFn = () => {};
+
+
+export const expressTsClassResourse = async (fileProyectPath, name ) => {
+  const src = path.join(fileProyectPath, '/src');
+  const nameCamel = "";
+  const namePascal = "";
+
+  const filesResourse = [
+    { route: `/interface/${name}.d.ts`, data: fileContentInterfaceResourse(name) },
+    { route: `/routes/${name}.routes.ts`, data: fileContentRoutesResourse( nameCamel, namePascal ) },
+    { route: `/controllers/${name}.controller.ts`, data: fileControllerResourse(name, namePascal, nameCamel) },
+    { route: `/models/${name}.model.ts`, data: fileContentModelResourse(namePascal) },
+  ];
+  filesResourse.forEach(( {route, data }) => {
+    let fullRoute = path.join(src, route);
+    fs.writeFileSync( fullRoute, data );
+  })
+}

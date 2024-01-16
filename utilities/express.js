@@ -1,13 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import { expressTsClass } from '../utilities/expressTs.js';
+
+import "colors";
+
+import { expressTsClass, expressTsClassResourse } from './expressTs.js';
 import { createSpinner } from 'nanospinner';
-import { installingPackage } from './packageInstall.js';
+import { installingPackage } from '../helpers/packageInstall.js';
 
-export const express = async ( tool, paradigm, nameProyect, descriptionProyect, scriptPath ) => {
+export const express = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
     // console.clear();
-    const spinner = createSpinner('Inicializando creacion del proyecto').start();
-
+    const spinner = createSpinner('Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo').start();
 
     // 1- preconfiguraciones
     const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
@@ -39,13 +41,11 @@ export const express = async ( tool, paradigm, nameProyect, descriptionProyect, 
         break;
 
         case 'typescript-class':
-          spinner.update({ text: "Creando carpetas y archivos"});
           expressTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
 
-          const pathProyect = path.join(scriptPath, nameProyectFormat);
-          installingPackage(pathProyect, spinner);
+          installingPackage(fileProyectPath, spinner);
           
-          spinner.success({text: "✅ Proyecto Creado con exito ✅"})
+          spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
         break;
         case 'typescript-func':
           spinner.error({ text: `😓 typescript-func aun esta en desarrollo`.red.bold })
@@ -53,4 +53,24 @@ export const express = async ( tool, paradigm, nameProyect, descriptionProyect, 
           fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
     }
+};
+
+export const expressResourse = async ( tool, paradigm, nameProyect ) => {
+  const spinner = createSpinner('creando recurso').start();
+
+  // 1- preconfiguraciones
+  const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
+  const nameProyectFormat = nameProyect.replace(/\s+/g, '-').toLowerCase(); // remplazamos espacios por -
+  const fileProyectPath = path.join(currentDirectory,`/${nameProyectFormat}`)// ruta de la carpeta del proyecto
+
+  const toolParadigm = tool + "-" + paradigm;
+  switch (toolParadigm) {
+    case 'typescript-class':
+      expressTsClassResourse( fileProyectPath, nameProyectFormat );
+      spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
+    break;
+  
+    default:
+      break;
+  }
 };

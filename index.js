@@ -4,7 +4,7 @@ import path from 'path';
 import "colors";
 import { Command } from "commander";
 
-import { newProyect } from './actions/index.js';
+import { newProyect, resourse } from './actions/index.js';
 
 // OTRAS LIBRERIAS INTERESANTES PARA DECORAR
 // https://www.npmjs.com/package/chalk
@@ -23,8 +23,7 @@ program // crear nuevo proyecto
   .version(version)
   // .action( () => console.log('todo melo') )
   .action( (schema, resourse, command) => {
-    const pathFather = path.dirname(command.parent._scriptPath);
-    newProyect(schema, pathFather)
+    newProyect(schema)
   })
 
 
@@ -44,9 +43,12 @@ program // generar un recurso - modulo completo o partes de el
   .option('-mid, --middleware', 'crea un middleware')
   
   .action((schema, table, resourse, command) => {
+    !resourse.resourse && console.log('😵‍💫😵‍💫 por favor indica el tipo de recurso que usaras 🥴🥴'.red.bold, '\n si no los conoces escribe Cli-samqs -h');
+    !schema && console.log('😵‍💫😵‍💫 por favor indica el nombre que le asigaras al recurso 🥴🥴'.red.bold);
+    
     switch (resourse.resourse) {
       case command.parent.args.includes('-res') || command.parent.args.includes('--resourse'):
-        console.log('entramos al recurso --resourse')
+        resourse(schema);
       break;
       case command.parent.args.includes('-ressql') || command.parent.args.includes('--resourse sql'):
         console.log('entramos al recurso --resourse sql')
@@ -72,11 +74,11 @@ program // generar un recurso - modulo completo o partes de el
       default:
         break;
     }
-    console.log('schema',schema);
-    console.log('table',table);
-    console.log('resourse',resourse);
-    console.log('args',command.parent.args)
-    console.log('path',command.parent._scriptPath)
+    // console.log('schema',schema);
+    // console.log('table',table);
+    // console.log('resourse',resourse);
+    // console.log('args',command.parent.args)
+    // console.log('path',command.parent._scriptPath)
   })
 
 program.parse();

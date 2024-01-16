@@ -17,7 +17,7 @@ const tableNamePascal = StringsMethods.camelToPascal(tableNameCamel);
 
 // ultimo ejecutar la funcion y el then o catch
 createCrudSql( tableName, tableNameCamel, tableNamePascal ).then(() => {
-  console.log("Tabla creada");
+  console.log("Crud en base a tabla creado");
   process.exit(1);
 }).catch((error) => {
   console.error("Error al crear la tabla:", error);

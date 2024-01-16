@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import 'colors';
 
 import { optionsExpress, paradigmExpress, question, readInput } from './questions.js';
-import { express } from './express.js';
+import { express } from '../utilities/express.js';
 
 
 /**
@@ -18,7 +18,6 @@ export const inquirerMenu = async () => {
     return tool
 };
 
-
 /**
  * seleccionar opcion si crearlo en js o ts
  */
@@ -32,4 +31,15 @@ export const expressOptions = async () => {
     return { tool, paradigm, descriptionProyect };
 
     
+}
+
+/**
+ * pregunta opciones del recurso
+ * @returns 
+ */
+export const expressOptionsResourse = async () => {
+  const { tool } = await inquirer.prompt(optionsExpress); // js o ts
+  const { paradigm } = await inquirer.prompt(paradigmExpress) // paradigma de clases o funciones
+
+  return { tool, paradigm };
 }
