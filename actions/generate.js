@@ -3,7 +3,7 @@ import { expressOptionsResourse, inquirerMenu } from '../helpers/inquirer.js';
 import { expressResourse } from '../utilities/express.js';
 
 
-export const resourse = async (nameResourse) => {
+export const newResourse = async (nameResourse) => {
 
   let optionTech = await inquirerMenu();
 

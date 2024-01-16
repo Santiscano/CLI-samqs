@@ -4,7 +4,7 @@ import path from 'path';
 import "colors";
 import { Command } from "commander";
 
-import { newProyect, resourse } from './actions/index.js';
+import { newProyect, newResourse } from './actions/index.js';
 
 // OTRAS LIBRERIAS INTERESANTES PARA DECORAR
 // https://www.npmjs.com/package/chalk
@@ -48,7 +48,7 @@ program // generar un recurso - modulo completo o partes de el
     
     switch (resourse.resourse) {
       case command.parent.args.includes('-res') || command.parent.args.includes('--resourse'):
-        resourse(schema);
+        newResourse(schema);
       break;
       case command.parent.args.includes('-ressql') || command.parent.args.includes('--resourse sql'):
         console.log('entramos al recurso --resourse sql')
