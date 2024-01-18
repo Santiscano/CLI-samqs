@@ -205,5 +205,7 @@ class ${tablePascal}Controller {
     }
   };
 }
+
+export default ${tablePascal}Controller;
 `;
 }

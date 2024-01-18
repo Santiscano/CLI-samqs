@@ -63,7 +63,8 @@ import { fileContentRoutesResourse } from '../docs/ts/class/commands/templates/r
 import { fileContentInterfaceResourse } from '../docs/ts/class/commands/templates/resourse.d.js';
 import { fileControllerResourse } from '../docs/ts/class/commands/templates/resourse.controller.js';
 import { fileContentModelResourse } from '../docs/ts/class/commands/templates/resourse.model.js';
-
+import { camelToPascal, camelToSnake, snakeOrKebabToCamel } from './stringMethods.js';
+import { updateRouteIndex } from './updateIndexRoutes.js';
 
 
 /**
@@ -217,17 +218,22 @@ export const expressTsFn = () => {};
 export const expressTsClassResourse = async (fileProyectPath, name ) => {
   const src = path.join(fileProyectPath, '/src');
   console.log('src: ', src);
-  const nameCamel = "";
-  const namePascal = "";
+  const nameCamel = snakeOrKebabToCamel(name);
+  const namePascal = camelToPascal(nameCamel);
+  const nameSnake = camelToSnake(nameCamel);
 
   const filesResourse = [
-    { route: `/interface/${name}.d.ts`, data: fileContentInterfaceResourse(name) },
-    { route: `/routes/${name}.routes.ts`, data: fileContentRoutesResourse( nameCamel, namePascal ) },
-    { route: `/controllers/${name}.controller.ts`, data: fileControllerResourse(name, namePascal, nameCamel) },
-    { route: `/models/${name}.model.ts`, data: fileContentModelResourse(namePascal) },
+    { route: `/interfaces/${nameCamel}.d.ts`, data: fileContentInterfaceResourse(nameSnake, namePascal) },
+    { route: `/routes/${nameCamel}.routes.ts`, data: fileContentRoutesResourse( nameCamel, namePascal ) },
+    { route: `/controllers/${nameCamel}.controller.ts`, data: fileControllerResourse(nameSnake, namePascal, nameCamel) },
+    { route: `/models/${nameCamel}.model.ts`, data: fileContentModelResourse(namePascal) },
   ];
   filesResourse.forEach(( {route, data }) => {
     let fullRoute = path.join(src, route);
     fs.writeFileSync( fullRoute, data );
   })
+
+  // actualizamos index.routes.ts
+  updateRouteIndex( nameCamel, "src/routes/index.ts" )
 }
+

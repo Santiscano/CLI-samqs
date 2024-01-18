@@ -14,7 +14,7 @@ export const createPackage = (nameProyect, descriptionProyect = '') => {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "prestart": "npm run build",
     "start": "node dist/index.js",
-    "swagger": "ts-node-dev --respawn --transpile-only src/documentation/swaggerScript.ts",
+    "swagger": "ts-node-dev --transpile-only src/documentation/swaggerScript.ts",
     "test": "echo \\"Error: no test specified\\" && exit 1"
   },
   "dependencies": {

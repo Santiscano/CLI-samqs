@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import path from 'path';
+import { readFileSync  } from 'fs';
+
 import "colors";
 import { Command } from "commander";
 
@@ -13,7 +14,8 @@ import { newProyect, newResourse } from './actions/index.js';
 // https://www.npmjs.com/package/gradient-string
 // https://www.npmjs.com/package/nanospinner
 
-const version = "1.3.3"
+const version = "1.3.13";
+
 const program = new Command();
 
 program // crear nuevo proyecto
@@ -21,7 +23,6 @@ program // crear nuevo proyecto
   .alias('n')
   .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, fastify y nestjs')
   .version(version)
-  // .action( () => console.log('todo melo') )
   .action( (schema, resourse, command) => {
     newProyect(schema)
   })

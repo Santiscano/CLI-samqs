@@ -26,6 +26,3 @@ createCrudSql( tableName, tableNameCamel, tableNamePascal ).then(() => {
 
   return data;
 };
-
-
-
