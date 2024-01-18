@@ -3,11 +3,11 @@ import path from 'path';
 
 import "colors";
 
-import { expressTsClass, expressTsClassResourse } from './expressTs.js';
+import { expressProyectTsClass, expressResourseSqlTsClass, expressResourseTsClass } from './expressTs.js';
 import { createSpinner } from 'nanospinner';
 import { installingPackage } from '../helpers/packageInstall.js';
 
-export const express = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
+export const expressProyect = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
     // console.clear();
     const spinner = createSpinner('Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo').start();
 
@@ -41,7 +41,7 @@ export const express = async ( tool, paradigm, nameProyect, descriptionProyect )
         break;
 
         case 'typescript-class':
-          expressTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
+          expressProyectTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
 
           installingPackage(fileProyectPath, spinner);
           
@@ -66,11 +66,31 @@ export const expressResourse = async ( tool, paradigm, nameProyect ) => {
   const toolParadigm = tool + "-" + paradigm;
   switch (toolParadigm) {
     case 'typescript-class':
-      expressTsClassResourse( currentDirectory, nameProyectFormat );
+      expressResourseTsClass( currentDirectory, nameProyectFormat );
       spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
     break;
   
     default:
-      break;
+    break;
   }
+};
+
+export const expressResourseSql = async ( tool, paradigm, nameProyect ) => {
+  const spinner = createSpinner('creando recurso \n').start();
+
+    // 1- preconfiguraciones
+    const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
+    const nameProyectFormat = nameProyect.replace(/\s+/g, '-').toLowerCase(); // remplazamos espacios por -
+    const fileProyectPath = path.join(currentDirectory,`/${nameProyectFormat}`)// ruta de la carpeta del proyecto
+  
+    const toolParadigm = tool + "-" + paradigm;
+    switch (toolParadigm) {
+      case 'typescript-class':
+        expressResourseSqlTsClass( fileProyectPath, nameProyectFormat )
+        spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
+      break;
+    
+      default:
+      break;
+    }
 };

@@ -5,7 +5,7 @@ import { readFileSync  } from 'fs';
 import "colors";
 import { Command } from "commander";
 
-import { newProyect, newResourse } from './actions/index.js';
+import { newProyect, newResourse, newResourseSql } from './actions/index.js';
 
 // OTRAS LIBRERIAS INTERESANTES PARA DECORAR
 // https://www.npmjs.com/package/chalk
@@ -52,7 +52,7 @@ program // generar un recurso - modulo completo o partes de el
         newResourse(schema);
       break;
       case command.parent.args.includes('-ressql') || command.parent.args.includes('--resourse sql'):
-        console.log('😓😢 aun no hemos creado este recurso --resourse sql')
+        newResourseSql(schema);
       break;
       case command.parent.args.includes('-resmongo') || command.parent.args.includes('--resourse mongo'):
         console.log('😓😢 aun no hemos creado este recurso --resourse mongo')

@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 
-export const updateRouteIndex = async ( module, filePath ) => {
+export const updateIndexRoutes = async ( module, filePath ) => {
 
   const newImportString = `import ${module} from \'./${module}.routes\';`;
   const newRouteUse = `route.use( "/${module}", ${module} );`;

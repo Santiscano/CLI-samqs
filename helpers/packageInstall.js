@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { chdir, cwd } from 'node:process';
+import { chdir } from 'node:process';
 
 export const installingPackage = ( pathProyect, spinner ) => {
   try {

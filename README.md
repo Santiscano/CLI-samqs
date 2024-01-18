@@ -31,3 +31,6 @@ cli-samqs g <nombre-modulo> --options
 ```
 cli-samqs g --help
 ```
+
+
+para generar un recurso -ressql es necesario llamar a las variables de entonrno de la siguiente manera
