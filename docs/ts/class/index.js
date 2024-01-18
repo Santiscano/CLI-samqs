@@ -11,11 +11,9 @@ export * from './commands/templates/routes.js';
 
 export * from './commands/allDatabaseMysql.js';
 export * from './commands/crudMongo.js';
-export * from './commands/crudMysql.js';
 export * from './commands/modelMongo.js';
 export * from './commands/modeMySql.js';
 export * from './commands/procedureMySql.js';
-export * from './commands/tableSql.js';
 
 export * from './config/configPorts.js';
 export * from './config/database/mongooseConfig.js';

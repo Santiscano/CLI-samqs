@@ -14,7 +14,6 @@ import {
   createControllerTemplate,
   createTagsComponents,
   createCrudMongo,
-  createCrudMysql,
   createCrudProcedure, 
   createDateMethods,
   createEditorConfig, 
@@ -52,7 +51,6 @@ import {
   createSqlInterface, 
   createStringMethods,
   createSwaggerScript,
-  createTableSql, 
   createTsConfig,
   createValidateToken,
   createVerifyUserPassword,
@@ -128,11 +126,9 @@ export const expressProyectTsClass = async ( fileProyectPath, nameProyect, descr
     // commands
     { route: '/commands/allDatabaseMysql.ts',           data: createAllDatabaseMysql() },
     { route: '/commands/crudMongo.ts',                  data: createCrudMongo() },
-    { route: '/commands/crudMysql.ts',                  data: createCrudMysql() },
     { route: '/commands/modelMongo.ts',                 data: createModelMongo() },
     { route: '/commands/modelMySql.ts',                 data: createModelMySql() },
     { route: '/commands/procedure.ts',                  data: createCrudProcedure() },
-    { route: '/commands/tableSql.ts',                   data: createTableSql() },
 
     // config
     { route: '/config/database/mongoose.ts',            data: createMongooseConfig() },
@@ -240,13 +236,12 @@ export const expressResourseTsFn = async () => {
 
 
 export const expressResourseSqlTsClass = async ( fileProyectPath, tableName ) => {
-  // const src = path.join(fileProyectPath, '/src');
-  // console.log('src: ', src);
+  const src = path.join(fileProyectPath, '/src');
   const tableNameCamel = snakeOrKebabToCamel(tableName);
   const tableNamePascal = camelToPascal(tableNameCamel);
   // const tableNameSnake = camelToSnake(tableNameCamel);
 
   // nos conectamos a la base de datos
-  sqlConnection(tableName, tableNameCamel, tableNamePascal)
+  await sqlConnection(tableName, tableNameCamel, tableNamePascal);
 };
 export const expressResourseSqlTsFn = async () => {};

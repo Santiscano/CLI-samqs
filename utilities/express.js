@@ -86,8 +86,7 @@ export const expressResourseSql = async ( tool, paradigm, nameProyect ) => {
     const toolParadigm = tool + "-" + paradigm;
     switch (toolParadigm) {
       case 'typescript-class':
-        expressResourseSqlTsClass( fileProyectPath, nameProyectFormat )
-        spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
+        await expressResourseSqlTsClass( fileProyectPath, nameProyectFormat );
       break;
     
       default:

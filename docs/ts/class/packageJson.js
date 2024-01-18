@@ -10,7 +10,6 @@ export const createPackage = (nameProyect, descriptionProyect = '') => {
     "allDatabaseMySQL": "ts-node-dev --transpile-only src/commands/allDatabaseMySQL.ts",
     "build": "tsc",
     "crudMongo": "ts-node-dev --transpile-only src/commands/crudMongo.ts",
-    "crudMySQL": "ts-node-dev --transpile-only src/commands/crudMysql.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "prestart": "npm run build",
     "start": "node dist/index.js",

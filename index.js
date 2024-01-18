@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import { readFileSync  } from 'fs';
-
 import "colors";
 import { Command } from "commander";
 
