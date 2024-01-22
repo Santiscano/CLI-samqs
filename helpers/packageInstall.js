@@ -1,8 +1,6 @@
 import { execSync } from 'child_process';
 import { chdir } from 'node:process';
 
-import { createSpinner } from 'nanospinner';
-
 export const installingPackage = ( pathProyect ) => {
   try {
     chdir(pathProyect); // cambiamos de directorio
@@ -17,8 +15,7 @@ export const installingPackage = ( pathProyect ) => {
     const stdoutInstallDev = execSync(installDev);
     console.log(`\n${stdoutInstallDev}`);
 
-    const spiner = createSpinner("✅ Proyecto Creado con exito y listo para correr ✅").start();
-    spiner.stop();
+    console.log("✅ Proyecto Creado con exito y listo para correr ✅");
     // Regresar al directorio original (opcional)
     // process.chdir()
     return true

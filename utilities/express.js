@@ -3,13 +3,11 @@ import path from 'path';
 
 import chalkAnimation from 'chalk-animation';
 import "colors";
-import { createSpinner } from 'nanospinner';
 
 import { expressProyectTsClass, expressResourseSqlTsClass, expressResourseTsClass } from './expressTs.js';
 import { installingPackage } from '../helpers/packageInstall.js';
 
 export const expressProyect = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
-    const spiner = createSpinner("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo").start();
     // const rainbow = chalkAnimation.rainbow("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
     console.log("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
 
@@ -29,7 +27,6 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
     }
 
     // 3- crear archivos dentro de la carpeta proyecto
-    spiner.stop("");
     const toolParadigm = tool + "-" + paradigm;
     switch (toolParadigm) {
         case 'javascript-class':

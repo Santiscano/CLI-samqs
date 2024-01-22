@@ -1,4 +1,3 @@
-import { createSpinner } from 'nanospinner';
 import { expressOptionsResourse, inquirerMenu } from '../helpers/inquirer.js';
 import { expressResourse, expressResourseSql } from '../utilities/express.js';
 
