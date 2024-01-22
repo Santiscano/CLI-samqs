@@ -31,7 +31,6 @@ export * from './helpers/bufferMethods.js';
 export * from './helpers/files.js';
 export * from './helpers/filesExcel.js';
 export * from './helpers/jwt.js';
-export * from './helpers/logs.js';
 export * from './helpers/missingData.js';
 export * from './helpers/nodeMailer.js';
 export * from './helpers/resStatus.js';
@@ -46,6 +45,7 @@ export * from './interfaces/server.interface.js';
 export * from './interfaces/sql2.interface.js';
 
 export * from './middlewares/apiKey.js';
+export * from './middlewares/logs.js';
 export * from './middlewares/token.js';
 export * from './middlewares/verifyUserPassword.js';
 
