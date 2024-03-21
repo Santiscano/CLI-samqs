@@ -35,26 +35,24 @@ export class Server implements ServerInterface{
   constructor(){}
 
   createServer() {
-    const serverProtocol = {
-      http: () => {
-        return http.createServer( this.app );
-      },
-      https: () => {
-        // RUTAS SSL
-        const credentials = {
-          key: fs.readFileSync(\`\${SSL_PRIVATE_KEY}\`, 'utf8'),
-          cert: fs.readFileSync(\`\${SSL_CERTIFICATE}\`, 'utf8')
-        };
-        return https.createServer( credentials, this.app )
-      }
-    }
-    return serverProtocol[this.protocol as Protocol ]();
+    console.log(\`servidor corriendo como \${this.protocol}\`);
+    if (this.protocol === "http") return http.createServer( this.app );
+
+    // RUTA SSL
+    const credentials = {
+      key: fs.readFileSync(\`\${SSL_PRIVATE_KEY}\`, 'utf8'),
+      cert: fs.readFileSync(\`\${SSL_CERTIFICATE}\`, 'utf8')
+    };
+    return https.createServer( credentials, this.app );
   }
 
   middlewares(): void {
+    this.app.use(this.upload.array('file')); // multer recibe todos los archivos tipo file
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.use(express.json());
+
+    
     this.app.use((req:Request, res:Response, next: NextFunction) => Logs.customLogger(req, res, next, "6m"))
     this.app.use(bodyParser.urlencoded({ limit: 'Infinity', extended: true }));
     this.app.use(bodyParser.json({ limit: 'Infinity' }));

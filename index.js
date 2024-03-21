@@ -30,7 +30,7 @@ program // crear nuevo proyecto
 program // generar un recurso - modulo completo o partes de el
   .command('generate <schematic> [resourse]')
   .alias('g')
-  .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, fastify y nestjs')
+  .description('Generar un recurso - modulo completo o parte de el')
   .version(version)
   .option('-res, --resourse', 'crea un modulo completo con archivos route, controller, model, interface')
   .option('-ressql, --resourse sql', 'crea un modulo completo con archivos route, controller, model, interface apartir de una tabla sql')

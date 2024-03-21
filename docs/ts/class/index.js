@@ -30,6 +30,7 @@ export * from './helpers/apiResponse.js';
 export * from './helpers/bufferMethods.js';
 export * from './helpers/files.js';
 export * from './helpers/filesExcel.js';
+export * from './helpers/googleBucket.js';
 export * from './helpers/jwt.js';
 export * from './helpers/logs.js';
 export * from './helpers/missingData.js';

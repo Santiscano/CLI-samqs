@@ -9,7 +9,7 @@ import { installingPackage } from '../helpers/packageInstall.js';
 
 export const expressProyect = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
     // console.clear();
-    const spinner = createSpinner('Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo').start();
+    // const spinner = createSpinner('Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo').start();
 
     // 1- preconfiguraciones
     const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
@@ -42,10 +42,8 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
 
         case 'typescript-class':
           expressProyectTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
-
-          installingPackage(fileProyectPath, spinner);
-          
-          spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
+          installingPackage(fileProyectPath);
+          console.log('✅ Proyecto Creado con exito y listo para correr ✅'.bold);
         break;
         case 'typescript-func':
           spinner.error({ text: `😓 typescript-func aun esta en desarrollo`.red.bold })
@@ -67,7 +65,7 @@ export const expressResourse = async ( tool, paradigm, nameProyect ) => {
   switch (toolParadigm) {
     case 'typescript-class':
       expressResourseTsClass( currentDirectory, nameProyectFormat );
-      spinner.success({text: "✅ Proyecto Creado con exito y listo para correr ✅"}.bold)
+      spinner.success({text: "✅ Recurso Creado con exito y listo para correr ✅"}.bold)
     break;
   
     default:
