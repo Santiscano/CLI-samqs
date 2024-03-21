@@ -1,15 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 
+import chalkAnimation from 'chalk-animation';
 import "colors";
 
 import { expressProyectTsClass, expressResourseSqlTsClass, expressResourseTsClass } from './expressTs.js';
-import { createSpinner } from 'nanospinner';
 import { installingPackage } from '../helpers/packageInstall.js';
 
 export const expressProyect = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
-    // console.clear();
-    // const spinner = createSpinner('Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo').start();
+    // const rainbow = chalkAnimation.rainbow("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
+    console.log("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
 
     // 1- preconfiguraciones
     const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
@@ -21,7 +21,7 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
       fs.mkdirSync(fileProyectPath);
     } else {
       setTimeout(() => {
-        spinner.error({ text: `💀💀💀 Ya existe una carpeta con este nombre de proyecto`})
+        // rainbow.stop(`💀💀💀 Ya existe una carpeta con este nombre de proyecto`);
       }, 1500);
       return 
     }
@@ -30,12 +30,12 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
     const toolParadigm = tool + "-" + paradigm;
     switch (toolParadigm) {
         case 'javascript-class':
-          spinner.error({ text: `😓 javascript-class aun esta en desarrollo`.red.bold })
+          // rainbow.stop(`😓 javascript-class aun esta en desarrollo`.red.bold);
           // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
           fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
         case 'javascript-func':
-          spinner.error({ text: `😓 javascript-func aun esta en desarrollo`.red.bold })
+          // rainbow.stop(`😓 javascript-func aun esta en desarrollo`.red.bold);
           // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
           fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
@@ -46,7 +46,7 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
           console.log('✅ Proyecto Creado con exito y listo para correr ✅'.bold);
         break;
         case 'typescript-func':
-          spinner.error({ text: `😓 typescript-func aun esta en desarrollo`.red.bold })
+          // rainbow.stop(`😓 typescript-func aun esta en desarrollo`.red.bold);
           // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
           fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
         break;
@@ -54,7 +54,7 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
 };
 
 export const expressResourse = async ( tool, paradigm, nameProyect ) => {
-  const spinner = createSpinner('creando recurso \n').start();
+  const rainbow = chalkAnimation.radar('creando recurso \n');
 
   // 1- preconfiguraciones
   const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
@@ -65,7 +65,7 @@ export const expressResourse = async ( tool, paradigm, nameProyect ) => {
   switch (toolParadigm) {
     case 'typescript-class':
       expressResourseTsClass( currentDirectory, nameProyectFormat );
-      spinner.success({text: "✅ Recurso Creado con exito y listo para correr ✅"}.bold)
+      rainbow.stop("✅ Proyecto Creado con exito y listo para correr ✅".bold)
     break;
   
     default:
@@ -74,7 +74,8 @@ export const expressResourse = async ( tool, paradigm, nameProyect ) => {
 };
 
 export const expressResourseSql = async ( tool, paradigm, nameProyect ) => {
-  const spinner = createSpinner('creando recurso \n').start();
+  const rainbow = chalkAnimation.radar('creando recurso \n');
+
 
     // 1- preconfiguraciones
     const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
@@ -85,6 +86,7 @@ export const expressResourseSql = async ( tool, paradigm, nameProyect ) => {
     switch (toolParadigm) {
       case 'typescript-class':
         await expressResourseSqlTsClass( fileProyectPath, nameProyectFormat );
+        rainbow.stop("✅ Proyecto Creado con exito y listo para correr ✅".bold);
       break;
     
       default:
