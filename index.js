@@ -12,14 +12,14 @@ import { newProyect, newResourse, newResourseSql } from './actions/index.js';
 // https://www.npmjs.com/package/gradient-string
 // https://www.npmjs.com/package/nanospinner
 
-const version = "1.3.13";
+const version = "1.3.23";
 
 const program = new Command();
 
 program // crear nuevo proyecto
   .command('new <schematic>')
   .alias('n')
-  .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, fastify y nestjs')
+  .description('CLI para la creacion de proyectos y modulos desde cero, diseñado para express, nestjs y react')
   .version(version)
   .action( (schema, resourse, command) => {
     newProyect(schema)

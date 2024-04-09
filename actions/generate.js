@@ -1,5 +1,5 @@
 import { expressOptionsResourse, inquirerMenu } from '../helpers/inquirer.js';
-import { expressResourse, expressResourseSql } from '../utilities/express.js';
+import { expressResourse, expressResourseSql } from '../buildkite/express.js';
 
 
 export const newResourse = async (nameResourse) => {

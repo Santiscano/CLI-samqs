@@ -57,14 +57,14 @@ import {
   createVerifyUserPassword,
   createDocumentationTemplates,
   createReadmeMD,
-} from '../docs/ts/class/index.js';
-import { fileContentRoutesResourse } from '../docs/ts/class/commands/templates/resourse.routes.js';
-import { fileContentInterfaceResourse } from '../docs/ts/class/commands/templates/resourse.d.js';
-import { fileControllerResourse } from '../docs/ts/class/commands/templates/resourse.controller.js';
-import { fileContentModelResourse } from '../docs/ts/class/commands/templates/resourse.model.js';
-import { camelToPascal, camelToSnake, snakeOrKebabToCamel } from './stringMethods.js';
-import { updateIndexRoutes } from './updateIndexRoutes.js';
-import { sqlConnection } from './sqlConnection.js';
+  fileContentRoutesResourse,
+  fileContentInterfaceResourse,
+  fileControllerResourse,
+  fileContentModelResourse
+} from '../integrations/ts/class/express/index.js';
+import { camelToPascal, camelToSnake, snakeOrKebabToCamel } from '../utilities/stringMethods.js';
+import { updateIndexRoutes } from '../utilities/updateIndexRoutes.js';
+import { sqlConnection } from '../utilities/sqlConnection.js';
 
 
 /**
@@ -72,7 +72,7 @@ import { sqlConnection } from './sqlConnection.js';
  * @param {*} fileProyectPath ruta de la raiz del proyecto
  * @param {*} nameProyect nombre asignado al proyecto
  */
-export const expressProyectTsClass = async ( fileProyectPath, nameProyect, descriptionProyect ) => {
+export const createProyectExpressTsClass = async ( fileProyectPath, nameProyect, descriptionProyect ) => {
   // ----------------------------ARCHIVOS PRINCIPALES-------------------------------------//
   // crear carpetas principales
   const foldersPrimary = [ '/client', '/logs', '/src', '/temp'  ];
@@ -206,6 +206,11 @@ export const expressProyectTsClass = async ( fileProyectPath, nameProyect, descr
   return true;
 
 };
+
+
+
+
+
 /**
  * funcion express con configuracion en funciones
  */
@@ -233,9 +238,9 @@ export const expressResourseTsClass = async (fileProyectPath, name ) => {
   // actualizamos index.routes.ts
   updateIndexRoutes( nameCamel, "src/routes/index.ts" )
 }
+
 export const expressResourseTsFn = async () => {
 };
-
 
 export const expressResourseSqlTsClass = async ( fileProyectPath, tableName ) => {
   const src = path.join(fileProyectPath, '/src');
@@ -246,4 +251,5 @@ export const expressResourseSqlTsClass = async ( fileProyectPath, tableName ) =>
   // nos conectamos a la base de datos
   await sqlConnection(tableName, tableNameCamel, tableNamePascal);
 };
+
 export const expressResourseSqlTsFn = async () => {};

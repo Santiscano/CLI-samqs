@@ -7,6 +7,10 @@ export * from './commands/templates/index.js';
 export * from './commands/templates/interface.js';
 export * from './commands/templates/model.js';
 export * from './commands/templates/procedure.js';
+export * from './commands/templates/resourse.controller.js';
+export * from './commands/templates/resourse.d.js';
+export * from './commands/templates/resourse.model.js';
+export * from './commands/templates/resourse.routes.js';
 export * from './commands/templates/routes.js';
 
 export * from './commands/allDatabaseMysql.js';

@@ -9,7 +9,7 @@ import { createSpinner } from 'nanospinner';
 import { 
   createProceduresTsClass, fileContentControllerTsClass, fileContentDocResTsClass, fileContentDocTsClass, 
   fileContentInterfaceTsClass, fileContentModelTsClass, fileContentRoutesTsClass 
-} from '../docs/ts/class/cli/index.js';
+} from '../integrations/ts/class/express/cli/index.js';
 
 export const sqlConnection = async (tableName, tableNameCamel, tableNamePascal) => {
   const spinner = createSpinner("\n consultando base de datos").start();

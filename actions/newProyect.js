@@ -1,52 +1,80 @@
 import { createSpinner } from 'nanospinner';
 
-import { expressProyect } from '../utilities/express.js';
+import { expressProyect } from '../buildkite/express.js';
+import { expressReactProyect } from '../buildkite/expressReact.js';
+import { reactProyect } from '../buildkite/react.js';
+
 import { expressOptions, inquirerMenu } from '../helpers/inquirer.js';
 
 export const newProyect = async ( nameProyect ) => {
   
   const spinner = createSpinner('validando desarrollo de maqueta');
-
   console.clear();
+  
+  let optionTech = await inquirerMenu(); // express, express-react
+  if (optionTech == "cancelar") {
+    return
+  }
+  let { tool, paradigm, descriptionProyect } = await expressOptions(); // js,ts - class,function, descripcion
 
-  let optionTech = await inquirerMenu();
+  spinner.start();
+  
 
   switch (optionTech) {
     case "express":
-      let { tool, paradigm, descriptionProyect } = await expressOptions();
       await expressProyect(tool, paradigm, nameProyect, descriptionProyect );
     break;
 
+    case "react":
+      await reactProyect( tool, paradigm, nameProyect, descriptionProyect );
+    break;
+
+    case "express-react":
+      await expressReactProyect(tool, paradigm, nameProyect, descriptionProyect);
+    break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     case "fastify":
-      spinner.start();
       setTimeout(() => {
         spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para fastify`});
       }, 2000)
       break;
-
+  
     case "nestjs":
-      spinner.start();
       setTimeout(() => {
         spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para nestjs`});
       }, 2000)
       break;
 
     case "react vite":
-      spinner.start();
       setTimeout(() => {
         spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para react vite`});
       }, 2000)
       break;
 
     case "nextjs":
-      spinner.start();
       setTimeout(() => {
         spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para nextjs`});
       }, 2000)
       break;
 
     case "angular":
-      spinner.start();
       setTimeout(() => {
         spinner.stop({ text: `💀💀💀 Aun no esta desarrollado para angular`});
       }, 2000)

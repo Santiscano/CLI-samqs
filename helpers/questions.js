@@ -10,6 +10,14 @@ export const question = [
                 value: 'express',
                 name: `${'1'.green} Express`
             },
+            {
+              value: 'react',
+              name: `${'2'.green} React`,
+            },
+            {
+              value: 'express-react',
+              name: `${'3'.green} Express con React`,
+            },
             // {
             //     value: 'nestjs',
             //     name: `${'2'.green} NestJs`

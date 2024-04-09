@@ -4,11 +4,10 @@ import path from 'path';
 import chalkAnimation from 'chalk-animation';
 import "colors";
 
-import { expressProyectTsClass, expressResourseSqlTsClass, expressResourseTsClass } from './expressTs.js';
+import { createProyectExpressTsClass, expressResourseSqlTsClass, expressResourseTsClass } from '../benchmarks/createExpress.js';
 import { installingPackage } from '../helpers/packageInstall.js';
 
 export const expressProyect = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
-    // const rainbow = chalkAnimation.rainbow("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
     console.log("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
 
     // 1- preconfiguraciones
@@ -30,25 +29,19 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
     const toolParadigm = tool + "-" + paradigm;
     switch (toolParadigm) {
         case 'javascript-class':
-          // rainbow.stop(`😓 javascript-class aun esta en desarrollo`.red.bold);
-          // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
-          fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
+          fs.rmSync( fileProyectPath, { recursive: true } ); 
         break;
         case 'javascript-func':
-          // rainbow.stop(`😓 javascript-func aun esta en desarrollo`.red.bold);
-          // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
-          fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
+          fs.rmSync( fileProyectPath, { recursive: true } ); 
         break;
 
         case 'typescript-class':
-          expressProyectTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
+          createProyectExpressTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
           installingPackage(fileProyectPath);
           console.log('✅ Proyecto Creado con exito y listo para correr ✅'.bold);
         break;
         case 'typescript-func':
-          // rainbow.stop(`😓 typescript-func aun esta en desarrollo`.red.bold);
-          // fs.rmdirSync( fileProyectPath, { recursive: true } ); // recursive true hace que elimine la carpeta aun si tiene archivos dentro
-          fs.rmSync( fileProyectPath, { recursive: true } ); //! esta en tes para ver si hace lo mismo
+          fs.rmSync( fileProyectPath, { recursive: true } ); 
         break;
     }
 };
