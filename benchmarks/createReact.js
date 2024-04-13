@@ -49,14 +49,118 @@ export const createProyectReactTsClass = async ( fileProyectPath, nameProyect, d
 
   // --------------------------ARCHIVOS DENTRO DE PUBLIC--------------------------------//
   const publicPath = path.join(client, '/public');
+  const foldersPublic = [ '/favicon', 
+    '/assets', '/assets/images', '/assets/icons', '/assets/background', '/assets/illustrations/',
+    '/assets/images/avatars', '/assets/images/covers',
+    '/assets/icons/glass'
+  ];
+  foldersPublic.forEach( folder => {
+    const folderPath = path.join(publicPath, folder);
+    fs.mkdirSync(folderPath);
+  });
+
   const publicFiles = [
     { route: '_redirects', data: createRedirects() },
     { route: 'manifest.json', data: createManifestJson() },
-    // TODO: aun debo averiguar como poder pegar aqui imagenes
   ];
   publicFiles.forEach(( {route, data }) => {
     let fullRoute = path.join(publicPath, route);
     fs.writeFileSync( fullRoute, data );
+  });
+  // TODO: aun debo averiguar como poder pegar aqui imagenes
+  function formatPath(path) {
+    return path.replace(/^\//, '').replace(/\//g, '\\');
+  }
+  const dirPath = path.dirname(new URL(import.meta.url).pathname);
+  const formattedPath = formatPath(dirPath);
+
+  const faviconPaths = [
+    { origin: '/favicon/android-chrome-192x192.png' },
+    { origin: '/favicon/android-chrome-512x512.png' },
+    { origin: '/favicon/apple-touch-icon.png' },
+    { origin: '/favicon/favicon-16x16.png' },
+    { origin: '/favicon/favicon-32x32.png' },
+    { origin: '/favicon/favicon.ico' },
+
+    { origin: '/assets/background/overlay_4.jpg' },
+
+    { origin: '/assets/illustrations/error-server-500.svg' },
+    { origin: '/assets/illustrations/illustration_404.svg' },
+    { origin: '/assets/illustrations/illustration_avatar.png' },
+    { origin: '/assets/illustrations/illustration_login.png' },
+
+    { origin: '/assets/icons/ic_flag_en.svg' },
+    { origin: '/assets/icons/ic_flag_es.png' },
+    { origin: '/assets/icons/ic_flag_fr.svg' },
+    { origin: '/assets/icons/ic_flag_por.png' },
+    { origin: '/assets/icons/ic_notification_chat.svg' },
+    { origin: '/assets/icons/ic_notification_mail.svg' },
+    { origin: '/assets/icons/ic_notification_package.svg' },
+    { origin: '/assets/icons/ic_notification_shipping.svg' },
+
+    { origin: '/assets/icons/glass/ic_glass_bag.png' },
+    { origin: '/assets/icons/glass/ic_glass_buy.png' },
+    { origin: '/assets/icons/glass/ic_glass_message.png' },
+    { origin: '/assets/icons/glass/ic_glass_users.png' },
+
+    { origin: '/assets/images/avatars/avatar_1.jpg' },
+    { origin: '/assets/images/avatars/avatar_2.jpg' },
+    { origin: '/assets/images/avatars/avatar_3.jpg' },
+    { origin: '/assets/images/avatars/avatar_4.jpg' },
+    { origin: '/assets/images/avatars/avatar_5.jpg' },
+    { origin: '/assets/images/avatars/avatar_6.jpg' },
+    { origin: '/assets/images/avatars/avatar_7.jpg' },
+    { origin: '/assets/images/avatars/avatar_8.jpg' },
+    { origin: '/assets/images/avatars/avatar_9.jpg' },
+    { origin: '/assets/images/avatars/avatar_10.jpg' },
+    { origin: '/assets/images/avatars/avatar_11.jpg' },
+    { origin: '/assets/images/avatars/avatar_12.jpg' },
+    { origin: '/assets/images/avatars/avatar_13.jpg' },
+    { origin: '/assets/images/avatars/avatar_14.jpg' },
+    { origin: '/assets/images/avatars/avatar_15.jpg' },
+    { origin: '/assets/images/avatars/avatar_16.jpg' },
+    { origin: '/assets/images/avatars/avatar_17.jpg' },
+    { origin: '/assets/images/avatars/avatar_18.jpg' },
+    { origin: '/assets/images/avatars/avatar_18.jpg' },
+    { origin: '/assets/images/avatars/avatar_19.jpg' },
+    { origin: '/assets/images/avatars/avatar_20.jpg' },
+    { origin: '/assets/images/avatars/avatar_21.jpg' },
+    { origin: '/assets/images/avatars/avatar_22.jpg' },
+    { origin: '/assets/images/avatars/avatar_23.jpg' },
+    { origin: '/assets/images/avatars/avatar_24.jpg' },
+    { origin: '/assets/images/avatars/avatar_25.jpg' },
+
+    { origin: '/assets/images/covers/cover_1.jpg' },
+    { origin: '/assets/images/covers/cover_2.jpg' },
+    { origin: '/assets/images/covers/cover_3.jpg' },
+    { origin: '/assets/images/covers/cover_4.jpg' },
+    { origin: '/assets/images/covers/cover_5.jpg' },
+    { origin: '/assets/images/covers/cover_6.jpg' },
+    { origin: '/assets/images/covers/cover_7.jpg' },
+    { origin: '/assets/images/covers/cover_8.jpg' },
+    { origin: '/assets/images/covers/cover_9.jpg' },
+    { origin: '/assets/images/covers/cover_10.jpg' },
+    { origin: '/assets/images/covers/cover_11.jpg' },
+    { origin: '/assets/images/covers/cover_12.jpg' },
+    { origin: '/assets/images/covers/cover_13.jpg' },
+    { origin: '/assets/images/covers/cover_14.jpg' },
+    { origin: '/assets/images/covers/cover_15.jpg' },
+    { origin: '/assets/images/covers/cover_16.jpg' },
+    { origin: '/assets/images/covers/cover_17.jpg' },
+    { origin: '/assets/images/covers/cover_18.jpg' },
+    { origin: '/assets/images/covers/cover_18.jpg' },
+    { origin: '/assets/images/covers/cover_19.jpg' },
+    { origin: '/assets/images/covers/cover_20.jpg' },
+    { origin: '/assets/images/covers/cover_21.jpg' },
+    { origin: '/assets/images/covers/cover_22.jpg' },
+    { origin: '/assets/images/covers/cover_23.jpg' },
+    { origin: '/assets/images/covers/cover_24.jpg' },
+  ]
+
+  faviconPaths.forEach(({ origin }) => {
+    let fullOrigin = path.join( formattedPath , '../integrations/ts/class/react/public', origin );
+    let fullDestiny = path.join( publicPath, origin );
+    fs.copyFileSync(fullOrigin, fullDestiny);
   });
   // --------------------------ARCHIVOS DENTRO DE MOCK--------------------------------//
   const mockPath = path.join(client, '/mock');
@@ -120,7 +224,7 @@ export const createProyectReactTsClass = async ( fileProyectPath, nameProyect, d
     { route: '/common/InputSelect.tsx',           data: createInputSelect() },
     { route: '/common/Logo.tsx',                  data: createLogo() },
     { route: '/common/TabsNavigationCustom.tsx',  data: createTabsNavigationCustom() },
-    { route: '/config/SesionSettings.ts',         data: createSessionSettings() },
+    { route: '/config/SessionSettings.ts',         data: createSessionSettings() },
     { route: '/tools/RouterLink.tsx',             data: createRouterLink() },
   ];
   filesComponents.forEach(({ route, data }) => {

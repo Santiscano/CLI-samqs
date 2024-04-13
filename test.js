@@ -1,28 +1,27 @@
-import { exec } from 'child_process';
+
 import path from 'path';
-import { createSpinner } from 'nanospinner';
-import "colors";
+import fs from 'fs';
 
+// const dir = path.join(path.resolve(), '../integrations/ts/class/react/public/favicon/android-chrome-192x192.png')
+// console.log('dir: ', dir);
 
+// const pathname = path.join(new URL(import.meta.url).pathname, '../integrations/ts/class/react/public/favicon/android-chrome-192x192.png');
+// console.log('pathname: ', pathname);
 
-const spinner = createSpinner('inicio todo'.green).start();
+const dir = process.cwd();
+console.log('dir: ', dir);
 
-setTimeout(() => {
-  spinner.success({ text: 'listo' });
-}, 5000);
+const rutaDeEsteArchivo = path.dirname(new URL(import.meta.url).pathname);
 
-// const route = process.cwd();
+function formatPath(path) {
+  return path.replace(/^\//, '').replace(/\//g, '\\');
+}
 
+const formattedPath = formatPath(rutaDeEsteArchivo);
+console.log('formattedPath: ', formattedPath);
 
-// const result = path.resolve(route, 'testing-express-react', 'client')
-// console.log('result: ', result);
+const file = path.join(formattedPath, '/integrations/ts/class/react/public/favicon/android-chrome-192x192.png');
 
-
-// exec('npm i', { cwd: result }, (error, stdout, stderr) => {
-//   if (error) {
-//     console.error(`error al ejecutar: ${error}`);
-//     return;
-//   }
-//   console.log('stdoud:  \n', stdout);
-//   console.error('stderr: \n', stderr);
-// })
+if (fs.existsSync(file)) {
+  console.log('existe');
+}

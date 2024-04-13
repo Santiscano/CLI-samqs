@@ -9,8 +9,8 @@ import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 
-import { useRouter } from '../../../hooks/routes/useRouter';
-import AuthContainerLayout from '../../../layout/others/AuthContainer';
+import { useRouter } from '../hooks/routes/useRouter';
+import AuthContainerLayout from '../layout/others/AuthContainer';
 
 
 const ForgotPasswordView = () => {

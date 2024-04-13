@@ -8,7 +8,8 @@ import "colors";
 import { npmInstallPackageJson } from '../helpers/packageInstall.js';
 
 export const expressReactProyect = async (tool, paradigm, nameProyect, descriptionProyect) => {
-  const spinner = createSpinner('🚀 Creando Proyecto...').start()
+  const spinner = createSpinner('🚀 Creando Proyecto...').start();
+  spinner.update({ text: "🚀 Creando Proyecto...".green });
   // 1- preconfiguraciones
   const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
   const nameProyectFormat = nameProyect.replace(/\s+/g, '-').toLowerCase(); // remplazamos espacios por -
