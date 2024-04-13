@@ -219,7 +219,6 @@ export const expressProyectTsFn = () => {};
 
 export const expressResourseTsClass = async (fileProyectPath, name ) => {
   const src = path.join(fileProyectPath, '/src');
-  console.log('src: ', src);
   const nameCamel = snakeOrKebabToCamel(name);
   const namePascal = camelToPascal(nameCamel);
   const nameSnake = camelToSnake(nameCamel);

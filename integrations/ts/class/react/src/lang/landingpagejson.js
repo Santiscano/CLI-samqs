@@ -1,5 +1,5 @@
 
 export const createLandingpageJson = () => {
-  const data = ``;
+  const data = ` `;
   return data;
 }

@@ -1,25 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-import { createProyectExpressReactTsClass } from "../benchmarks/createExpressReact.js";
-import { installingPackage } from '../helpers/packageInstall.js';
-import "colors";
+import { createSpinner } from 'nanospinner';
 
+import { createProyectExpressReactTsClass } from "../benchmarks/createExpressReact.js";
+import { installingPackageExpress } from '../helpers/packageInstallExpress.js';
+import "colors";
+import { npmInstallPackageJson } from '../helpers/packageInstall.js';
 
 export const expressReactProyect = async (tool, paradigm, nameProyect, descriptionProyect) => {
-  console.log("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
-
+  const spinner = createSpinner('🚀 Creando Proyecto...').start()
   // 1- preconfiguraciones
   const currentDirectory = process.cwd(); // directorio desde donde se llama el CLI
   const nameProyectFormat = nameProyect.replace(/\s+/g, '-').toLowerCase(); // remplazamos espacios por -
   const fileProyectPath = path.join(currentDirectory,`/${nameProyectFormat}`)// ruta de la carpeta del proyecto
+  const pathFrontend = path.resolve(currentDirectory, nameProyectFormat, 'client');
 
   // 2- crear carpeta con nombre proyecto
   if (!fs.existsSync(fileProyectPath)) {
     fs.mkdirSync(fileProyectPath);
   } else {
-    setTimeout(() => {
-      // rainbow.stop(`💀💀💀 Ya existe una carpeta con este nombre de proyecto`);
-    }, 1500);
+    spinner.error({ text: " Ya existe un proyecto con este mismo nombre 😓".red });
     return 
   }
 
@@ -34,10 +34,14 @@ export const expressReactProyect = async (tool, paradigm, nameProyect, descripti
     break;
 
     case 'typescript-class':
+      spinner.update({ text: "instalando dependencias de express...\n".cyan });
       createProyectExpressReactTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
-      // installingPackage(fileProyectPath); // backend
-      // installingPackage(path.join(fileProyectPath, '/client')); // frontend
-      // console.log('✅ Proyecto Creado con exito y listo para correr ✅'.bold);
+      
+      installingPackageExpress(fileProyectPath); // backend
+      
+      spinner.update({ text: " Instalando dependencias de react...\n".cyan });
+      npmInstallPackageJson( pathFrontend, spinner ); // frontend
+
     break;
     case 'typescript-func':
       fs.rmSync( fileProyectPath, { recursive: true } );

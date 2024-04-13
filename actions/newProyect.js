@@ -1,5 +1,3 @@
-import { createSpinner } from 'nanospinner';
-
 import { expressProyect } from '../buildkite/express.js';
 import { expressReactProyect } from '../buildkite/expressReact.js';
 import { reactProyect } from '../buildkite/react.js';
@@ -8,7 +6,6 @@ import { expressOptions, inquirerMenu } from '../helpers/inquirer.js';
 
 export const newProyect = async ( nameProyect ) => {
   
-  const spinner = createSpinner('validando desarrollo de maqueta');
   console.clear();
   
   let optionTech = await inquirerMenu(); // express, express-react
@@ -16,9 +13,6 @@ export const newProyect = async ( nameProyect ) => {
     return
   }
   let { tool, paradigm, descriptionProyect } = await expressOptions(); // js,ts - class,function, descripcion
-
-  spinner.start();
-  
 
   switch (optionTech) {
     case "express":

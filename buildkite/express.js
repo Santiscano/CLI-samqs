@@ -5,7 +5,7 @@ import chalkAnimation from 'chalk-animation';
 import "colors";
 
 import { createProyectExpressTsClass, expressResourseSqlTsClass, expressResourseTsClass } from '../benchmarks/createExpress.js';
-import { installingPackage } from '../helpers/packageInstall.js';
+import { installingPackageExpress } from '../helpers/packageInstallExpress.js';
 
 export const expressProyect = async ( tool, paradigm, nameProyect, descriptionProyect ) => {
     console.log("Inicializando creacion del proyecto, ...Creando carpetas y archivos, ...instalando dependencias del proyecto, ...instalando dependencias de desarrollo");
@@ -37,7 +37,7 @@ export const expressProyect = async ( tool, paradigm, nameProyect, descriptionPr
 
         case 'typescript-class':
           createProyectExpressTsClass( fileProyectPath, nameProyectFormat, descriptionProyect );
-          installingPackage(fileProyectPath);
+          installingPackageExpress(fileProyectPath);
           console.log('✅ Proyecto Creado con exito y listo para correr ✅'.bold);
         break;
         case 'typescript-func':

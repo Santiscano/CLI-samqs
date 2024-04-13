@@ -1,26 +1,20 @@
-import { execSync } from 'child_process';
-import { chdir } from 'node:process';
+import { exec } from 'child_process';
+import "colors";
+import path from 'path';
+import { openVSCode } from './openVS.js';
 
-export const installingPackage = ( pathProyect ) => {
-  try {
-    chdir(pathProyect); // cambiamos de directorio
+export const npmInstallPackageJson = ( pathProyect, spinner ) => {
+  exec('npm i', { cwd: pathProyect }, ( err, stdout ) => {
+    if (err) {
+      console.error('error al ejecutar el comando npm i');
+      return;
+    }
 
-    // ejecutamos comando de install principal
-    const install = `npm install --save cors date-fns dotenv exceljs express fs-extra jsonwebtoken moment-timezone mongoose morgan multer mysql2 nodemailer socket.io swagger-autogen swagger-jsdoc swagger-ui-express`;
-    const stdoutInstall = execSync(install);
-    console.log(`\n${stdoutInstall}`);
+    spinner.success({ text:'✅ Proyecto Creado con exito y listo para correr ✅'.green.bold } );
 
-    // ejecutamos comando de install para dependencias de desarrollo
-    const installDev = `npm install -D @types/cors @types/dotenv @types/express @types/fs-extra @types/jsonwebtoken @types/mongoose @types/morgan @types/multer @types/nodemailer @types/swagger-jsdoc @types/swagger-ui-express ts-node-dev typescript`;
-    const stdoutInstallDev = execSync(installDev);
-    console.log(`\n${stdoutInstallDev}`);
-
-    console.log("✅ Proyecto Creado con exito y listo para correr ✅");
-    // Regresar al directorio original (opcional)
-    // process.chdir()
-    return true
-  } catch (error) {
-    console.error(`Error al ejecutar los comandos de instalación: ${error.message}`);
-    return false;
-  }
+    const back = path.join(pathProyect, '../');
+    openVSCode(back);
+  });
 };
+
+

@@ -1,5 +1,5 @@
 
 export const createViteEnvDTs = () => {
-  const data = ``;
+  const data = `/// <reference types="vite/client" />`;
   return data;
 }

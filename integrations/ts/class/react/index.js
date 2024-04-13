@@ -40,8 +40,9 @@ export * from './src/components/common/inputSelect.js';
 export * from './src/components/common/logo.js';
 export * from './src/components/common/tabsNavigationCustom.js';
 export * from './src/components/config/sessionSettings.js';
-export * from './src/components/global'
+// export * from './src/components/global';
 export * from './src/components/tools/routerLink.js';
+// export * from './src/components/views';
 
 export * from './src/context/layoutContext.js';
 

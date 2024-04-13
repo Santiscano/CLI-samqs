@@ -1,5 +1,5 @@
 
 export const createIndexMock = () => {
-  const data = ``;
+  const data = `export * from './userSession';`;
   return data;
 }

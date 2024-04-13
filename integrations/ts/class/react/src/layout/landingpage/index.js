@@ -1,5 +1,5 @@
 
 export const createIndexLandingpage = () => {
-  const data = ``;
+  const data = ` `;
   return data;
 }
