@@ -55,7 +55,6 @@ export const sqlConnection = async (tableName, tableNameCamel, tableNamePascal) 
         return `${property.Field} = _${property.Field},`;
       }
     }).join('\n            '); // string con todas las clave valor del procedure "companys_name = _companys_name,"
-  
 
   // creamos archivos y carpetas
   // -----------------CREATE INTERFACES----------------//

@@ -38,6 +38,7 @@ export * from './src/components/common/inputDatePickers.js'
 export * from './src/components/common/inputFileUpload.js';
 export * from './src/components/common/inputSelect.js';
 export * from './src/components/common/logo.js';
+export * from './src/components/common/tableNews.js';
 export * from './src/components/common/tabsNavigationCustom.js';
 export * from './src/components/config/sessionSettings.js';
 // export * from './src/components/global';
@@ -80,6 +81,7 @@ export * from './src/middlewares/withoutAuthentication.js';
 
 export * from './src/modules/Admin/Develop/components/buttons.js';
 export * from './src/modules/Admin/Develop/components/cards.js';
+export * from './src/modules/Admin/Develop/components/charts.js';
 export * from './src/modules/Admin/Develop/components/input.js';
 export * from './src/modules/Admin/Develop/components/tables.js';
 export * from './src/modules/Admin/Develop/components.js';

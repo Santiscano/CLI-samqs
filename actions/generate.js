@@ -19,6 +19,7 @@ export const newResourse = async (nameResourse) => {
   }
 };
 export const newResourseMongo = async () => {};
+
 export const newResourseSql = async (nameResourse) => {
   let optionTech = await inquirerMenu();
 

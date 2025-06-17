@@ -5,7 +5,7 @@ import {
   createAppOrderTimeline, createAppTask, createAppTrafficBySite, createAppTsx, createAppWebsiteVisits, createAppbarNavbar, createAuthContainer, 
   createBarChart, createButtons, createCardWidget, createCards, createChart, createColumnsChart, createComponents, createComponentsPage, 
   createConfigLayout, createConfigNavigation, createCssTheme, createCustomShadow, createDashboardJson, createDataTable, createDataTableCustom, 
-  createDrawerSidebar, createEditorConfig, createEslintrc, createForgotPassword, createFormatNumbers, createFormatTime, createGitignore, 
+  createDrawerSidebar, createEditorConfig, createEslintrc, createForgotPassword, createFormatNumbers, createFormatTime, createGitignore, createModuleAdmincharts,
   createHomePage, createIconify, createIndexChart, createIndexDashboard, createIndexHtml, createIndexLandingpage, createIndexMock, 
   createIndexModuleAdminHome, createIndexNavbar, createIndexRoutes, createIndexSidebar, createIndexTheme, createInputDatePickers, 
   createInputFileUpload, createInputSelect, createInputs, createItemsListSidebar, createLandingpageJson, createLanguagePopoverNavbar, 
@@ -15,7 +15,7 @@ import {
   createPieChart, createPruebaPalette, createRadarChart, createReadmemd, createRedirects, createRouterLink, createScrollbarIndex, 
   createScrollbarStyle, createSearchBar, createServerError, createServerErrorPage, createSessionSettings, createShadowTheme, 
   createSidebarLayout2, createSignUp, createSignUpPage, createTables, createTabsNavigationCustom, createTest, createTest3, 
-  createTestPage, createThemeInterface, createTsConfigJson, createTsConfigNodeJson, createTypography, createUseColorPreset, 
+  createTestPage, createThemeInterface, createTsConfigJson, createTsConfigNodeJson, createTypography, createUseColorPreset, createComponentsTableNews, 
   createUseLanguage, createUseModeTheme, createUsePathName, createUseResponsive, createUseRouter, createUseScrollToTop, createUserChart, 
   createUserSession, createUsers, createViteConfig, createViteEnvDTs, createWithAuthentication, createWithRoleAllowed, createWithoutAuthentication
 } from '../integrations/ts/class/react/index.js';
@@ -223,6 +223,7 @@ export const createProyectReactTsClass = async ( fileProyectPath, nameProyect, d
     { route: '/common/InputFileUpload.tsx',       data: createInputFileUpload() },
     { route: '/common/InputSelect.tsx',           data: createInputSelect() },
     { route: '/common/Logo.tsx',                  data: createLogo() },
+    { route: '/common/TableNews',                  data: createComponentsTableNews() },
     { route: '/common/TabsNavigationCustom.tsx',  data: createTabsNavigationCustom() },
     { route: '/config/SessionSettings.ts',         data: createSessionSettings() },
     { route: '/tools/RouterLink.tsx',             data: createRouterLink() },
@@ -330,6 +331,7 @@ export const createProyectReactTsClass = async ( fileProyectPath, nameProyect, d
     { route: '/Admin/Develop/Components.tsx',                 data: createComponents() },
     { route: '/Admin/Develop/components/Buttons.tsx',         data: createButtons() },
     { route: '/Admin/Develop/components/Cards.tsx',           data: createCards() },
+    { route: '/Admin/Develop/components/Charts.tsx',          data: createModuleAdmincharts() },
     { route: '/Admin/Develop/components/Inputs.tsx',          data: createInputs() },
     { route: '/Admin/Develop/components/Tables.tsx',          data: createTables() },
     { route: '/Admin/Home/index.tsx',                         data: createIndexModuleAdminHome() },

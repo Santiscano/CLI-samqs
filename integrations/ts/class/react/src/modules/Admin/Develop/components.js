@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Buttons from './components/Buttons';
 import InputsCustom from './components/Inputs';
 import Tables from './components/Tables';
-
+import Charts from './components/Charts';
 
 const ComponentsView = () => {
   return (
@@ -22,6 +22,7 @@ const ComponentsView = () => {
 
       <Tables/>
 
+      <Charts/>
 
     </Container>
   )
